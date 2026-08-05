@@ -152,6 +152,15 @@ def run(csv_path, out_dir, alpha=0.1, min_pos=15, seed=0):
         has_ok = y_set[:, ok_col] if ok_col is not None else np.zeros(len(te), bool)
         has_viol = y_set[:, viol_col] if viol_col is not None else np.zeros(len(te), bool)
         test_sets[c] = {"has_ok": has_ok, "has_viol": has_viol}
+        # BioGaze vs conformal gereksiz-red (false-positive) analizi (test kümesi)
+        bio_viol = (df[c].to_numpy()[te] == 0)      # BioGaze 'ihlal' dedi (compliant=0)
+        conf_viol_only = has_viol & (~has_ok)        # conformal 'kesin ihlal'
+        per_crit[c]["n_ok"] = int(ok_mask.sum())
+        per_crit[c]["n_viol"] = int(viol_mask.sum())
+        per_crit[c]["biogaze_fp"] = int((ok_mask & bio_viol).sum())
+        per_crit[c]["conformal_fp"] = int((ok_mask & conf_viol_only).sum())
+        per_crit[c]["biogaze_tp"] = int((viol_mask & bio_viol).sum())
+        per_crit[c]["conformal_tp"] = int((viol_mask & conf_viol_only).sum())
         print(f"  [{c}] coverage={coverage:.3f} (hedef {conf:.2f}) "
               f"| ort.set={set_sizes.mean():.2f} | pozitif={n_pos}")
 
@@ -180,6 +189,15 @@ def run(csv_path, out_dir, alpha=0.1, min_pos=15, seed=0):
     # conformal bunların kaçını ACCEPT ediyor (kurtarıyor)?
     saved = int((biogaze_reject & truly_compliant & (decisions == "ACCEPT")).sum())
 
+    # --- ANA retake metriği: kriter-başına gereksiz-red (false-positive) azaltımı ---
+    total_bio_fp = sum(per_crit[c].get("biogaze_fp", 0) for c in active)
+    total_conf_fp = sum(per_crit[c].get("conformal_fp", 0) for c in active)
+    fp_reduction = int(total_bio_fp - total_conf_fp)
+    fp_reduction_pct = round(fp_reduction / total_bio_fp * 100, 1) if total_bio_fp else 0.0
+    tot_viol = sum(per_crit[c].get("n_viol", 0) for c in active)
+    bio_tp = sum(per_crit[c].get("biogaze_tp", 0) for c in active)
+    conf_tp = sum(per_crit[c].get("conformal_tp", 0) for c in active)
+
     summary = {
         "n_valid": n, "test_n": int(m), "target_coverage": conf,
         "criteria": per_crit,
@@ -187,6 +205,13 @@ def run(csv_path, out_dir, alpha=0.1, min_pos=15, seed=0):
         "baseline_biogaze_retakes": baseline_retakes,
         "unnecessary_baseline_retakes": unnecessary_baseline,
         "unnecessary_retakes_prevented": saved,
+        "biogaze_false_flags_total": int(total_bio_fp),
+        "conformal_false_flags_total": int(total_conf_fp),
+        "false_flag_reduction": fp_reduction,
+        "false_flag_reduction_pct": fp_reduction_pct,
+        "total_true_violations_test": int(tot_viol),
+        "biogaze_true_flags": int(bio_tp),
+        "conformal_confident_true_flags": int(conf_tp),
     }
     with open(os.path.join(out_dir, "summary.json"), "w") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
@@ -211,6 +236,9 @@ def run(csv_path, out_dir, alpha=0.1, min_pos=15, seed=0):
     print("Kararlar:", dec_counts)
     print(f"Baseline (BioGaze) retake: {baseline_retakes} | "
           f"gereksiz: {unnecessary_baseline} | conformal ile önlenen: {saved}")
+    print(f"Gereksiz-red (false flag): BioGaze={total_bio_fp} -> conformal={total_conf_fp} "
+          f"| AZALMA={fp_reduction} (%{fp_reduction_pct})")
+    print(f"Gercek ihlal tespiti (kesin): BioGaze={bio_tp}/{tot_viol} vs conformal={conf_tp}/{tot_viol}")
     return summary
 
 

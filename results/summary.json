@@ -12,7 +12,13 @@
       "coverage_on_ok": 0.9170560747663551,
       "avg_set_size": 0.9211391018619934,
       "singleton_rate": 0.9211391018619934,
-      "empty_set_rate": 0.07886089813800658
+      "empty_set_rate": 0.07886089813800658,
+      "n_ok": 856,
+      "n_viol": 57,
+      "biogaze_fp": 1,
+      "conformal_fp": 1,
+      "biogaze_tp": 57,
+      "conformal_tp": 55
     },
     "Eyes_open": {
       "skip": false,
@@ -23,7 +29,13 @@
       "coverage_on_ok": 0.9129901960784313,
       "avg_set_size": 0.9255202628696605,
       "singleton_rate": 0.9255202628696605,
-      "empty_set_rate": 0.07447973713033954
+      "empty_set_rate": 0.07447973713033954,
+      "n_ok": 816,
+      "n_viol": 97,
+      "biogaze_fp": 9,
+      "conformal_fp": 5,
+      "biogaze_tp": 97,
+      "conformal_tp": 95
     },
     "No_sunglasses": {
       "skip": false,
@@ -34,7 +46,13 @@
       "coverage_on_ok": 0.9317129629629629,
       "avg_set_size": 0.9222343921139102,
       "singleton_rate": 0.9222343921139102,
-      "empty_set_rate": 0.07776560788608981
+      "empty_set_rate": 0.07776560788608981,
+      "n_ok": 864,
+      "n_viol": 49,
+      "biogaze_fp": 24,
+      "conformal_fp": 1,
+      "biogaze_tp": 48,
+      "conformal_tp": 36
     },
     "No_posterization": {
       "skip": false,
@@ -45,7 +63,13 @@
       "coverage_on_ok": 0.9424206815511164,
       "avg_set_size": 0.9090909090909091,
       "singleton_rate": 0.9090909090909091,
-      "empty_set_rate": 0.09090909090909091
+      "empty_set_rate": 0.09090909090909091,
+      "n_ok": 851,
+      "n_viol": 62,
+      "biogaze_fp": 29,
+      "conformal_fp": 0,
+      "biogaze_tp": 62,
+      "conformal_tp": 28
     },
     "Gaze_in_camera": {
       "skip": false,
@@ -56,7 +80,13 @@
       "coverage_on_ok": 0.9164556962025316,
       "avg_set_size": 0.9430449069003286,
       "singleton_rate": 0.9430449069003286,
-      "empty_set_rate": 0.056955093099671415
+      "empty_set_rate": 0.056955093099671415,
+      "n_ok": 790,
+      "n_viol": 123,
+      "biogaze_fp": 133,
+      "conformal_fp": 19,
+      "biogaze_tp": 115,
+      "conformal_tp": 109
     },
     "Neutral_expression": {
       "skip": false,
@@ -67,7 +97,13 @@
       "coverage_on_ok": 0.9106933019976499,
       "avg_set_size": 0.9288061336254108,
       "singleton_rate": 0.9288061336254108,
-      "empty_set_rate": 0.07119386637458927
+      "empty_set_rate": 0.07119386637458927,
+      "n_ok": 851,
+      "n_viol": 62,
+      "biogaze_fp": 187,
+      "conformal_fp": 19,
+      "biogaze_tp": 59,
+      "conformal_tp": 52
     },
     "In_focus": {
       "skip": false,
@@ -78,7 +114,13 @@
       "coverage_on_ok": 0.9095182138660399,
       "avg_set_size": 0.8904709748083242,
       "singleton_rate": 0.8904709748083242,
-      "empty_set_rate": 0.10952902519167579
+      "empty_set_rate": 0.10952902519167579,
+      "n_ok": 851,
+      "n_viol": 62,
+      "biogaze_fp": 18,
+      "conformal_fp": 0,
+      "biogaze_tp": 62,
+      "conformal_tp": 39
     },
     "Correct_exposure": {
       "skip": false,
@@ -89,7 +131,13 @@
       "coverage_on_ok": 0.9036427732079906,
       "avg_set_size": 1.036144578313253,
       "singleton_rate": 0.963855421686747,
-      "empty_set_rate": 0.0
+      "empty_set_rate": 0.0,
+      "n_ok": 851,
+      "n_viol": 62,
+      "biogaze_fp": 114,
+      "conformal_fp": 82,
+      "biogaze_tp": 57,
+      "conformal_tp": 57
     },
     "No_or_light_makeup": {
       "skip": false,
@@ -100,7 +148,13 @@
       "coverage_on_ok": 0.8890160183066361,
       "avg_set_size": 0.891566265060241,
       "singleton_rate": 0.891566265060241,
-      "empty_set_rate": 0.10843373493975904
+      "empty_set_rate": 0.10843373493975904,
+      "n_ok": 874,
+      "n_viol": 39,
+      "biogaze_fp": 52,
+      "conformal_fp": 1,
+      "biogaze_tp": 39,
+      "conformal_tp": 36
     },
     "No_pixelation": {
       "skip": false,
@@ -111,7 +165,13 @@
       "coverage_on_ok": 0.900117508813161,
       "avg_set_size": 0.882803943044907,
       "singleton_rate": 0.882803943044907,
-      "empty_set_rate": 0.1171960569550931
+      "empty_set_rate": 0.1171960569550931,
+      "n_ok": 851,
+      "n_viol": 62,
+      "biogaze_fp": 103,
+      "conformal_fp": 0,
+      "biogaze_tp": 62,
+      "conformal_tp": 39
     },
     "Frontal_pose": {
       "skip": false,
@@ -122,7 +182,13 @@
       "coverage_on_ok": 0.8766968325791855,
       "avg_set_size": 1.0580503833515882,
       "singleton_rate": 0.9419496166484118,
-      "empty_set_rate": 0.0
+      "empty_set_rate": 0.0,
+      "n_ok": 884,
+      "n_viol": 29,
+      "biogaze_fp": 412,
+      "conformal_fp": 109,
+      "biogaze_tp": 28,
+      "conformal_tp": 26
     },
     "Correct_saturation": {
       "skip": false,
@@ -133,7 +199,13 @@
       "coverage_on_ok": 0.8929411764705882,
       "avg_set_size": 0.9069003285870756,
       "singleton_rate": 0.9069003285870756,
-      "empty_set_rate": 0.09309967141292443
+      "empty_set_rate": 0.09309967141292443,
+      "n_ok": 850,
+      "n_viol": 63,
+      "biogaze_fp": 71,
+      "conformal_fp": 13,
+      "biogaze_tp": 62,
+      "conformal_tp": 54
     },
     "Uniform_background": {
       "skip": false,
@@ -144,7 +216,13 @@
       "coverage_on_ok": 0.9244186046511628,
       "avg_set_size": 1.049288061336254,
       "singleton_rate": 0.9507119386637459,
-      "empty_set_rate": 0.0
+      "empty_set_rate": 0.0,
+      "n_ok": 860,
+      "n_viol": 53,
+      "biogaze_fp": 252,
+      "conformal_fp": 65,
+      "biogaze_tp": 46,
+      "conformal_tp": 44
     },
     "Uniform_face_lighting": {
       "skip": false,
@@ -155,7 +233,13 @@
       "coverage_on_ok": 0.8878822197055493,
       "avg_set_size": 1.0142387732749178,
       "singleton_rate": 0.9857612267250822,
-      "empty_set_rate": 0.0
+      "empty_set_rate": 0.0,
+      "n_ok": 883,
+      "n_viol": 30,
+      "biogaze_fp": 343,
+      "conformal_fp": 99,
+      "biogaze_tp": 29,
+      "conformal_tp": 24
     }
   },
   "decisions": {
@@ -165,5 +249,12 @@
   },
   "baseline_biogaze_retakes": 907,
   "unnecessary_baseline_retakes": 63,
-  "unnecessary_retakes_prevented": 7
+  "unnecessary_retakes_prevented": 7,
+  "biogaze_false_flags_total": 1748,
+  "conformal_false_flags_total": 414,
+  "false_flag_reduction": 1334,
+  "false_flag_reduction_pct": 76.3,
+  "total_true_violations_test": 850,
+  "biogaze_true_flags": 823,
+  "conformal_confident_true_flags": 694
 }
