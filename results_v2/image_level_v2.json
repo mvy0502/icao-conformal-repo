@@ -1,0 +1,28 @@
+{
+  "n_test": 994,
+  "active_criteria": 14,
+  "mean_per_criterion_marginal_cov": 0.9183,
+  "joint_coverage_lac": 0.3058,
+  "joint_coverage_mondrian": 0.2837,
+  "independence_bound": 0.2288,
+  "bonferroni_per_criterion_target": 0.9929,
+  "image_confusion": {
+    "ACCEPT": {
+      "total": 6,
+      "on_violation_img": 0,
+      "on_zoom_outofscope": 6
+    },
+    "REJECT": {
+      "total": 878,
+      "on_violation_img": 862,
+      "on_zoom_outofscope": 16
+    },
+    "RETAKE": {
+      "total": 110,
+      "on_violation_img": 63,
+      "on_zoom_outofscope": 47
+    }
+  },
+  "true_violations_wrongly_accepted": 0,
+  "total_violation_images": 925
+}
