@@ -1,0 +1,456 @@
+{
+  "config": {
+    "alpha": 0.1,
+    "seeds_ablation": 5,
+    "seeds_percrit": 10,
+    "quantile": "exact k-th order statistic, +inf when k>n",
+    "zoom": "excluded from per-criterion"
+  },
+  "feature_ablation": {
+    "full": {
+      "lac_cov": {
+        "mean": 0.8989,
+        "std": 0.0159
+      },
+      "lac_viol": {
+        "mean": 0.8178,
+        "std": 0.0154
+      },
+      "mond_viol": {
+        "mean": 0.9017,
+        "std": 0.0101
+      },
+      "log_fpr": {
+        "mean": 0.0484,
+        "std": 0.0042
+      },
+      "log_recall": {
+        "mean": 0.9393,
+        "std": 0.0122
+      },
+      "log_ffred": {
+        "mean": 66.3194,
+        "std": 3.1727
+      },
+      "mond_setsize": {
+        "mean": 0.9814,
+        "std": 0.0096
+      },
+      "mond_both": {
+        "mean": 0.0422,
+        "std": 0.017
+      },
+      "lac_empty": {
+        "mean": 0.0646,
+        "std": 0.0125
+      }
+    },
+    "own+metrics": {
+      "lac_cov": {
+        "mean": 0.8996,
+        "std": 0.0096
+      },
+      "lac_viol": {
+        "mean": 0.7664,
+        "std": 0.035
+      },
+      "mond_viol": {
+        "mean": 0.9061,
+        "std": 0.0139
+      },
+      "log_fpr": {
+        "mean": 0.107,
+        "std": 0.0038
+      },
+      "log_recall": {
+        "mean": 0.9405,
+        "std": 0.0097
+      },
+      "log_ffred": {
+        "mean": 25.5127,
+        "std": 2.3453
+      },
+      "mond_setsize": {
+        "mean": 1.0478,
+        "std": 0.0098
+      },
+      "mond_both": {
+        "mean": 0.0881,
+        "std": 0.0179
+      },
+      "lac_empty": {
+        "mean": 0.0439,
+        "std": 0.0096
+      }
+    },
+    "metrics": {
+      "lac_cov": {
+        "mean": 0.9005,
+        "std": 0.0268
+      },
+      "lac_viol": {
+        "mean": 0.9214,
+        "std": 0.0273
+      },
+      "mond_viol": {
+        "mean": 0.9347,
+        "std": 0.0144
+      },
+      "log_fpr": {
+        "mean": 0.4045,
+        "std": 0.0169
+      },
+      "log_recall": {
+        "mean": 0.7544,
+        "std": 0.034
+      },
+      "log_ffred": {
+        "mean": -181.6812,
+        "std": 14.0563
+      },
+      "mond_setsize": {
+        "mean": 1.5477,
+        "std": 0.0364
+      },
+      "mond_both": {
+        "mean": 0.5542,
+        "std": 0.0353
+      },
+      "lac_empty": {
+        "mean": 0.0102,
+        "std": 0.0046
+      }
+    }
+  },
+  "per_criterion": {
+    "Head_without_covering": {
+      "lac_viol": 0.795,
+      "lac_viol_ci95": [
+        0.759,
+        0.827
+      ],
+      "mond_viol": 0.887,
+      "mond_viol_ci95": [
+        0.858,
+        0.912
+      ],
+      "median_pos_calib": 57,
+      "mond_avg_set_size": 0.889,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "Eyes_open": {
+      "lac_viol": 0.936,
+      "lac_viol_ci95": [
+        0.919,
+        0.951
+      ],
+      "mond_viol": 0.924,
+      "mond_viol_ci95": [
+        0.905,
+        0.94
+      ],
+      "median_pos_calib": 95,
+      "mond_avg_set_size": 0.901,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "No_sunglasses": {
+      "lac_viol": 0.675,
+      "lac_viol_ci95": [
+        0.632,
+        0.717
+      ],
+      "mond_viol": 0.897,
+      "mond_viol_ci95": [
+        0.866,
+        0.922
+      ],
+      "median_pos_calib": 52,
+      "mond_avg_set_size": 0.907,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "No_posterization": {
+      "lac_viol": 0.372,
+      "lac_viol_ci95": [
+        0.333,
+        0.411
+      ],
+      "mond_viol": 0.887,
+      "mond_viol_ci95": [
+        0.859,
+        0.911
+      ],
+      "median_pos_calib": 59,
+      "mond_avg_set_size": 0.908,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "Gaze_in_camera": {
+      "lac_viol": 0.9,
+      "lac_viol_ci95": [
+        0.882,
+        0.916
+      ],
+      "mond_viol": 0.892,
+      "mond_viol_ci95": [
+        0.874,
+        0.909
+      ],
+      "median_pos_calib": 117,
+      "mond_avg_set_size": 0.936,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "Neutral_expression": {
+      "lac_viol": 0.88,
+      "lac_viol_ci95": [
+        0.852,
+        0.905
+      ],
+      "mond_viol": 0.898,
+      "mond_viol_ci95": [
+        0.871,
+        0.921
+      ],
+      "median_pos_calib": 60,
+      "mond_avg_set_size": 0.939,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "In_focus": {
+      "lac_viol": 0.726,
+      "lac_viol_ci95": [
+        0.689,
+        0.761
+      ],
+      "mond_viol": 0.889,
+      "mond_viol_ci95": [
+        0.862,
+        0.913
+      ],
+      "median_pos_calib": 60,
+      "mond_avg_set_size": 0.899,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "Correct_exposure": {
+      "lac_viol": 0.886,
+      "lac_viol_ci95": [
+        0.858,
+        0.91
+      ],
+      "mond_viol": 0.901,
+      "mond_viol_ci95": [
+        0.874,
+        0.923
+      ],
+      "median_pos_calib": 60,
+      "mond_avg_set_size": 1.053,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "No_or_light_makeup": {
+      "lac_viol": 0.914,
+      "lac_viol_ci95": [
+        0.882,
+        0.939
+      ],
+      "mond_viol": 0.889,
+      "mond_viol_ci95": [
+        0.854,
+        0.918
+      ],
+      "median_pos_calib": 39,
+      "mond_avg_set_size": 0.905,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "No_pixelation": {
+      "lac_viol": 0.808,
+      "lac_viol_ci95": [
+        0.774,
+        0.838
+      ],
+      "mond_viol": 0.91,
+      "mond_viol_ci95": [
+        0.885,
+        0.932
+      ],
+      "median_pos_calib": 60,
+      "mond_avg_set_size": 0.906,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "Frontal_pose": {
+      "lac_viol": 0.737,
+      "lac_viol_ci95": [
+        0.693,
+        0.778
+      ],
+      "mond_viol": 0.915,
+      "mond_viol_ci95": [
+        0.885,
+        0.94
+      ],
+      "median_pos_calib": 11,
+      "mond_avg_set_size": 1.284,
+      "n_seeds_vacuous_qinf": 2,
+      "degenerate_flag": true
+    },
+    "Correct_saturation": {
+      "lac_viol": 0.875,
+      "lac_viol_ci95": [
+        0.846,
+        0.9
+      ],
+      "mond_viol": 0.897,
+      "mond_viol_ci95": [
+        0.871,
+        0.92
+      ],
+      "median_pos_calib": 60,
+      "mond_avg_set_size": 0.909,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "Uniform_background": {
+      "lac_viol": 0.881,
+      "lac_viol_ci95": [
+        0.85,
+        0.907
+      ],
+      "mond_viol": 0.917,
+      "mond_viol_ci95": [
+        0.89,
+        0.94
+      ],
+      "median_pos_calib": 51,
+      "mond_avg_set_size": 1.072,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    },
+    "Uniform_face_lighting": {
+      "lac_viol": 0.879,
+      "lac_viol_ci95": [
+        0.834,
+        0.914
+      ],
+      "mond_viol": 0.921,
+      "mond_viol_ci95": [
+        0.883,
+        0.95
+      ],
+      "median_pos_calib": 30,
+      "mond_avg_set_size": 1.171,
+      "n_seeds_vacuous_qinf": 0,
+      "degenerate_flag": false
+    }
+  },
+  "robust_headline": {
+    "mond_viol_pooled_mean_stable_criteria": 0.9009,
+    "n_stable_criteria": 13,
+    "excluded_degenerate": [
+      "Frontal_pose"
+    ]
+  },
+  "subject_level": {
+    "n_test_subjects": 55,
+    "n_calib_subjects": 55,
+    "image_level_coverage_micro": 0.9181,
+    "subject_macro_coverage": 0.9134,
+    "subject_coverage_std": 0.0331,
+    "treatment": "EMPIRICAL DIAGNOSTIC, not a formal guarantee.",
+    "note": "Images cluster within subjects, so exchangeability holds only at the subject level; the effective calibration size is the number of calibration SUBJECTS (~55), not images (763). Calibration here is still image-level, so we report empirical coverage only; a formal clustered/subject-level conformal guarantee is left as future work."
+  },
+  "aps_randomized": {
+    "coverage": 0.973,
+    "coverage_viol": 0.96,
+    "recall": 0.889,
+    "avg_set_size": 1.07
+  },
+  "isotonic_riskcoverage": {
+    "threshold": [
+      0.02,
+      0.06,
+      0.1,
+      0.14,
+      0.18,
+      0.22,
+      0.26,
+      0.3,
+      0.34,
+      0.38,
+      0.42,
+      0.46,
+      0.5,
+      0.54,
+      0.58,
+      0.62,
+      0.66,
+      0.7,
+      0.74,
+      0.78,
+      0.82,
+      0.86,
+      0.9,
+      0.94,
+      0.98
+    ],
+    "fpr": [
+      0.1164,
+      0.0567,
+      0.0471,
+      0.0288,
+      0.0282,
+      0.0254,
+      0.0192,
+      0.0186,
+      0.0165,
+      0.0121,
+      0.0087,
+      0.0075,
+      0.0074,
+      0.0052,
+      0.0051,
+      0.0048,
+      0.0041,
+      0.0033,
+      0.0032,
+      0.0026,
+      0.002,
+      0.0013,
+      0.0012,
+      0.0012,
+      0.0008
+    ],
+    "recall": [
+      0.9611,
+      0.9405,
+      0.9319,
+      0.9211,
+      0.92,
+      0.9168,
+      0.8962,
+      0.8854,
+      0.8746,
+      0.8551,
+      0.8368,
+      0.8314,
+      0.8292,
+      0.7654,
+      0.7632,
+      0.7535,
+      0.7524,
+      0.7103,
+      0.7092,
+      0.6973,
+      0.6757,
+      0.5654,
+      0.5384,
+      0.4941,
+      0.4541
+    ]
+  }
+}

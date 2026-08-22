@@ -8,6 +8,12 @@ This note summarises the experiments I re-ran in response to your review, the co
 I made to the earlier (over-stated) claims, and the methodological questions I would like
 to decide together.
 
+> Update: this note has been superseded by a hardened analysis (v3) and a rewritten paper
+> (Paper1_v3_draft), produced after an internal multi-agent review. The v3 paper adds
+> confidence intervals, a feature ablation, a fixed conformal quantile, a corrected
+> (randomized) APS, and honest subject-level and small-sample caveats. Where a number here
+> differs from the v3 paper, the v3 paper is authoritative.
+
 ---
 
 ## 1. What I corrected
@@ -129,3 +135,36 @@ triage), so it does not entangle Paper 1's methodology.
 
 I have **not** polished the Introduction / Related Work yet, per your advice — I will do that
 only once we fix the protocol above.
+
+---
+
+## 6. Additional experiments completed while awaiting your reply
+
+I used the waiting time to pre-answer several of the questions in Section 5 with actual
+evidence rather than leaving them open. All use the same subject-disjoint protocol.
+
+**APS (question 3).** [Corrected in v3.] I added Adaptive Prediction Sets as a sixth method
+(from scratch, since MAPIE's binary API is LAC-only). The NON-randomized variant is
+degenerate here (coverage 1.000, confident-singleton recall 0.016), but the correctly
+RANDOMIZED APS of Romano et al. is competitive: false-positive rate 0.026 at recall 0.89 and
+set size about 1.07. So APS is a legitimate method, not a negative control; the earlier
+degeneracy was a property of the non-randomized variant only.
+
+**Joint image-level guarantee (question 4).** Uncorrected, the 14 per-criterion sets give
+only 0.29 joint coverage. Applying a Bonferroni correction (per-criterion target 0.993)
+raises joint coverage to 0.91 (Mondrian) / 0.93 (LAC), i.e. a genuine image-level guarantee
+is achievable. The cost is conservatism: about 95% of images are then routed to RETAKE, and
+mean set size stays small (1.22). So we can offer a corrected joint guarantee, but it trades
+almost all ACCEPT/REJECT decisiveness for the guarantee.
+
+**Operating point / cost curve (question 2).** Sweeping the target from 0.80 to 0.98 for
+Mondrian, violation-class coverage tracks the target, false-positive rate stays low
+(about 0.03 to 0.04), and violation recall peaks around the 0.90 to 0.95 range before falling
+at 0.98 (over-conservative). A target of about 0.95 looks like a strong operating point
+(violation coverage 0.97, recall 0.90, FPR 0.03), which we can discuss.
+
+**Mondrian at image level.** Aggregating Mondrian sets into the image decision gives a more
+decisive and equally safe triage than marginal LAC: 933 REJECT, 61 RETAKE, 0 ACCEPT, and
+again 0 of 925 true-violation images wrongly accepted (marginal LAC gave 878 / 110 / 6).
+
+Figures for these are in the Drive folder (fig_alpha_curve, fig_joint_coverage).

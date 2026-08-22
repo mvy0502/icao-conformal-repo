@@ -1,3 +1,9 @@
+# Current version: v3 (hardened)
+
+The authoritative paper and results are the **v3** set (`results_v3/Paper1_v3_draft.pdf`), produced after an internal multi-agent review. v3 adds Clopper-Pearson confidence intervals, a feature ablation (the coverage guarantee is feature-agnostic; accuracy is a single-violation artifact), an exact conformal quantile, a corrected randomized APS, honest subject-level and small-sample caveats, and a risk-coverage comparison. Reproduce with `./run_all_v3.sh`. The sections below describe the earlier v2 results.
+
+---
+
 # Uncertainty-Aware Triage for Rule-Based ICAO Face-Image Compliance
 
 A model-agnostic **per-criterion calibration layer** on top of a rule-based ICAO/ISO

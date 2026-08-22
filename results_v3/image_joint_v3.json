@@ -1,0 +1,54 @@
+{
+  "image_level_seed0": {
+    "lac": {
+      "ACCEPT": 0,
+      "REJECT": 914,
+      "RETAKE": 80,
+      "violations_wrongly_accepted": 0,
+      "total_violation_images": 925,
+      "zoom_accept": 0,
+      "zoom_total": 69
+    },
+    "mond": {
+      "ACCEPT": 0,
+      "REJECT": 958,
+      "RETAKE": 36,
+      "violations_wrongly_accepted": 0,
+      "total_violation_images": 925,
+      "zoom_accept": 0,
+      "zoom_total": 69
+    }
+  },
+  "joint_coverage": {
+    "uncorrected": {
+      "lac": {
+        "mean": 0.2746,
+        "std": 0.0444
+      },
+      "mond": {
+        "mean": 0.2702,
+        "std": 0.0317
+      }
+    },
+    "bonferroni": {
+      "lac": {
+        "mean": 0.9105,
+        "std": 0.027
+      },
+      "mond": {
+        "mean": 0.9106,
+        "std": 0.0343
+      }
+    },
+    "bonf_retake": {
+      "lac": {
+        "mean": 0.9612,
+        "std": 0.0141
+      },
+      "mond": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    }
+  }
+}
