@@ -1,0 +1,59 @@
+{
+  "method_comparison": {
+    "raw": {
+      "fpr_mean": 0.144,
+      "fpr_sd": 0.005,
+      "rec_mean": 0.955,
+      "rec_sd": 0.003,
+      "abst_mean": 0.0
+    },
+    "logistic": {
+      "fpr_mean": 0.048,
+      "fpr_sd": 0.004,
+      "rec_mean": 0.939,
+      "rec_sd": 0.012,
+      "abst_mean": 0.0
+    },
+    "threshold": {
+      "fpr_mean": 0.036,
+      "fpr_sd": 0.004,
+      "rec_mean": 0.92,
+      "rec_sd": 0.016,
+      "abst_mean": 0.03
+    },
+    "lac": {
+      "fpr_mean": 0.036,
+      "fpr_sd": 0.004,
+      "rec_mean": 0.807,
+      "rec_sd": 0.016,
+      "abst_mean": 0.073
+    },
+    "mond": {
+      "fpr_mean": 0.04,
+      "fpr_sd": 0.004,
+      "rec_mean": 0.878,
+      "rec_sd": 0.016,
+      "abst_mean": 0.103
+    },
+    "aps": {
+      "fpr_mean": 0.026,
+      "fpr_sd": 0.004,
+      "rec_mean": 0.891,
+      "rec_sd": 0.017,
+      "abst_mean": 0.072
+    }
+  },
+  "reject_decomposition_all": {
+    "REJECT_correct": 822,
+    "REJECT_wrong_reason": 67,
+    "RETAKE": 36,
+    "REJECT_zoom_oos": 69
+  },
+  "reject_decomposition_violation_images": {
+    "REJECT_correct": 822,
+    "REJECT_wrong_reason": 67,
+    "RETAKE": 36
+  },
+  "n_test": 994,
+  "n_violation_images": 925
+}
