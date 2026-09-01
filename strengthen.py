@@ -1,5 +1,5 @@
 """
-strengthen.py — additional self-contained experiments while awaiting supervisor input.
+strengthen.py: additional self-contained experiments while awaiting supervisor input.
 
 Adds, on the same subject-disjoint protocol as analysis_v2:
   (1) APS (Adaptive Prediction Sets) as a sixth triage method (from scratch, since
@@ -12,14 +12,16 @@ Adds, on the same subject-disjoint protocol as analysis_v2:
 Run: python3 strengthen.py
 """
 import json, warnings
+import os, sys
 import numpy as np
 warnings.filterwarnings("ignore")
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 import analysis_v2 as A
 
-OUT = "/home/claude/results_v2"
-CSV = "/home/claude/tono_full_pred.csv"
+BASE = os.path.dirname(os.path.abspath(__file__))
+CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(BASE, "tono_full_pred.csv")
+OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(BASE, "results_v2")
 M = len(A.CRITERIA)  # 14
 
 

@@ -1,0 +1,473 @@
+{
+  "per_criterion": {
+    "Head_without_covering": {
+      "lac": {
+        "pooled_n": 560,
+        "unique_images": 247,
+        "appearances_per_image": 2.27,
+        "coverage_unique": 0.786,
+        "ci95_pooled": [
+          0.759,
+          0.827
+        ],
+        "ci95_dedup": [
+          0.729,
+          0.835
+        ]
+      },
+      "mond": {
+        "pooled_n": 560,
+        "unique_images": 247,
+        "appearances_per_image": 2.27,
+        "coverage_unique": 0.888,
+        "ci95_pooled": [
+          0.858,
+          0.912
+        ],
+        "ci95_dedup": [
+          0.84,
+          0.923
+        ]
+      },
+      "disjoint_dedup": true,
+      "lac_upper_dedup_below_0.90": true
+    },
+    "Eyes_open": {
+      "lac": {
+        "pooled_n": 973,
+        "unique_images": 415,
+        "appearances_per_image": 2.34,
+        "coverage_unique": 0.937,
+        "ci95_pooled": [
+          0.919,
+          0.951
+        ],
+        "ci95_dedup": [
+          0.91,
+          0.959
+        ]
+      },
+      "mond": {
+        "pooled_n": 973,
+        "unique_images": 415,
+        "appearances_per_image": 2.34,
+        "coverage_unique": 0.924,
+        "ci95_pooled": [
+          0.905,
+          0.94
+        ],
+        "ci95_dedup": [
+          0.896,
+          0.949
+        ]
+      },
+      "disjoint_dedup": false,
+      "lac_upper_dedup_below_0.90": false
+    },
+    "No_sunglasses": {
+      "lac": {
+        "pooled_n": 493,
+        "unique_images": 211,
+        "appearances_per_image": 2.34,
+        "coverage_unique": 0.679,
+        "ci95_pooled": [
+          0.632,
+          0.717
+        ],
+        "ci95_dedup": [
+          0.61,
+          0.74
+        ]
+      },
+      "mond": {
+        "pooled_n": 493,
+        "unique_images": 211,
+        "appearances_per_image": 2.34,
+        "coverage_unique": 0.906,
+        "ci95_pooled": [
+          0.866,
+          0.922
+        ],
+        "ci95_dedup": [
+          0.857,
+          0.941
+        ]
+      },
+      "disjoint_dedup": true,
+      "lac_upper_dedup_below_0.90": true
+    },
+    "No_posterization": {
+      "lac": {
+        "pooled_n": 611,
+        "unique_images": 265,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.397,
+        "ci95_pooled": [
+          0.333,
+          0.411
+        ],
+        "ci95_dedup": [
+          0.337,
+          0.458
+        ]
+      },
+      "mond": {
+        "pooled_n": 611,
+        "unique_images": 265,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.879,
+        "ci95_pooled": [
+          0.859,
+          0.911
+        ],
+        "ci95_dedup": [
+          0.834,
+          0.916
+        ]
+      },
+      "disjoint_dedup": true,
+      "lac_upper_dedup_below_0.90": true
+    },
+    "Gaze_in_camera": {
+      "lac": {
+        "pooled_n": 1209,
+        "unique_images": 524,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.902,
+        "ci95_pooled": [
+          0.882,
+          0.916
+        ],
+        "ci95_dedup": [
+          0.874,
+          0.927
+        ]
+      },
+      "mond": {
+        "pooled_n": 1209,
+        "unique_images": 524,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.892,
+        "ci95_pooled": [
+          0.874,
+          0.909
+        ],
+        "ci95_dedup": [
+          0.863,
+          0.918
+        ]
+      },
+      "disjoint_dedup": false,
+      "lac_upper_dedup_below_0.90": false
+    },
+    "Neutral_expression": {
+      "lac": {
+        "pooled_n": 609,
+        "unique_images": 264,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.873,
+        "ci95_pooled": [
+          0.852,
+          0.905
+        ],
+        "ci95_dedup": [
+          0.825,
+          0.909
+        ]
+      },
+      "mond": {
+        "pooled_n": 609,
+        "unique_images": 264,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.897,
+        "ci95_pooled": [
+          0.871,
+          0.921
+        ],
+        "ci95_dedup": [
+          0.855,
+          0.932
+        ]
+      },
+      "disjoint_dedup": false,
+      "lac_upper_dedup_below_0.90": false
+    },
+    "In_focus": {
+      "lac": {
+        "pooled_n": 614,
+        "unique_images": 266,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.726,
+        "ci95_pooled": [
+          0.689,
+          0.761
+        ],
+        "ci95_dedup": [
+          0.668,
+          0.778
+        ]
+      },
+      "mond": {
+        "pooled_n": 614,
+        "unique_images": 266,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.898,
+        "ci95_pooled": [
+          0.862,
+          0.913
+        ],
+        "ci95_dedup": [
+          0.856,
+          0.932
+        ]
+      },
+      "disjoint_dedup": true,
+      "lac_upper_dedup_below_0.90": true
+    },
+    "Correct_exposure": {
+      "lac": {
+        "pooled_n": 614,
+        "unique_images": 266,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.876,
+        "ci95_pooled": [
+          0.858,
+          0.91
+        ],
+        "ci95_dedup": [
+          0.83,
+          0.913
+        ]
+      },
+      "mond": {
+        "pooled_n": 614,
+        "unique_images": 266,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.901,
+        "ci95_pooled": [
+          0.874,
+          0.923
+        ],
+        "ci95_dedup": [
+          0.86,
+          0.935
+        ]
+      },
+      "disjoint_dedup": false,
+      "lac_upper_dedup_below_0.90": false
+    },
+    "No_or_light_makeup": {
+      "lac": {
+        "pooled_n": 405,
+        "unique_images": 170,
+        "appearances_per_image": 2.38,
+        "coverage_unique": 0.911,
+        "ci95_pooled": [
+          0.882,
+          0.939
+        ],
+        "ci95_dedup": [
+          0.859,
+          0.95
+        ]
+      },
+      "mond": {
+        "pooled_n": 405,
+        "unique_images": 170,
+        "appearances_per_image": 2.38,
+        "coverage_unique": 0.88,
+        "ci95_pooled": [
+          0.854,
+          0.918
+        ],
+        "ci95_dedup": [
+          0.824,
+          0.927
+        ]
+      },
+      "disjoint_dedup": false,
+      "lac_upper_dedup_below_0.90": false
+    },
+    "No_pixelation": {
+      "lac": {
+        "pooled_n": 614,
+        "unique_images": 266,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.794,
+        "ci95_pooled": [
+          0.774,
+          0.838
+        ],
+        "ci95_dedup": [
+          0.74,
+          0.84
+        ]
+      },
+      "mond": {
+        "pooled_n": 614,
+        "unique_images": 266,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.909,
+        "ci95_pooled": [
+          0.885,
+          0.932
+        ],
+        "ci95_dedup": [
+          0.869,
+          0.941
+        ]
+      },
+      "disjoint_dedup": true,
+      "lac_upper_dedup_below_0.90": true
+    },
+    "Frontal_pose": {
+      "lac": {
+        "pooled_n": 437,
+        "unique_images": 138,
+        "appearances_per_image": 3.17,
+        "coverage_unique": 0.779,
+        "ci95_pooled": [
+          0.693,
+          0.778
+        ],
+        "ci95_dedup": [
+          0.704,
+          0.848
+        ]
+      },
+      "mond": {
+        "pooled_n": 437,
+        "unique_images": 138,
+        "appearances_per_image": 3.17,
+        "coverage_unique": 0.921,
+        "ci95_pooled": [
+          0.885,
+          0.94
+        ],
+        "ci95_dedup": [
+          0.862,
+          0.96
+        ]
+      },
+      "disjoint_dedup": true,
+      "lac_upper_dedup_below_0.90": true
+    },
+    "Correct_saturation": {
+      "lac": {
+        "pooled_n": 614,
+        "unique_images": 266,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.869,
+        "ci95_pooled": [
+          0.846,
+          0.9
+        ],
+        "ci95_dedup": [
+          0.822,
+          0.907
+        ]
+      },
+      "mond": {
+        "pooled_n": 614,
+        "unique_images": 266,
+        "appearances_per_image": 2.31,
+        "coverage_unique": 0.89,
+        "ci95_pooled": [
+          0.871,
+          0.92
+        ],
+        "ci95_dedup": [
+          0.847,
+          0.926
+        ]
+      },
+      "disjoint_dedup": false,
+      "lac_upper_dedup_below_0.90": false
+    },
+    "Uniform_background": {
+      "lac": {
+        "pooled_n": 520,
+        "unique_images": 227,
+        "appearances_per_image": 2.29,
+        "coverage_unique": 0.891,
+        "ci95_pooled": [
+          0.85,
+          0.907
+        ],
+        "ci95_dedup": [
+          0.842,
+          0.927
+        ]
+      },
+      "mond": {
+        "pooled_n": 520,
+        "unique_images": 227,
+        "appearances_per_image": 2.29,
+        "coverage_unique": 0.926,
+        "ci95_pooled": [
+          0.89,
+          0.94
+        ],
+        "ci95_dedup": [
+          0.883,
+          0.956
+        ]
+      },
+      "disjoint_dedup": false,
+      "lac_upper_dedup_below_0.90": false
+    },
+    "Uniform_face_lighting": {
+      "lac": {
+        "pooled_n": 280,
+        "unique_images": 126,
+        "appearances_per_image": 2.22,
+        "coverage_unique": 0.876,
+        "ci95_pooled": [
+          0.834,
+          0.914
+        ],
+        "ci95_dedup": [
+          0.802,
+          0.926
+        ]
+      },
+      "mond": {
+        "pooled_n": 280,
+        "unique_images": 126,
+        "appearances_per_image": 2.22,
+        "coverage_unique": 0.917,
+        "ci95_pooled": [
+          0.883,
+          0.95
+        ],
+        "ci95_dedup": [
+          0.859,
+          0.961
+        ]
+      },
+      "disjoint_dedup": false,
+      "lac_upper_dedup_below_0.90": false
+    }
+  },
+  "summary": {
+    "lac_dedup_upper_below_0.90": [
+      "Head_without_covering",
+      "No_sunglasses",
+      "No_posterization",
+      "In_focus",
+      "No_pixelation",
+      "Frontal_pose"
+    ],
+    "n_below": 6,
+    "dedup_disjoint_lac_vs_mond": [
+      "Head_without_covering",
+      "No_sunglasses",
+      "No_posterization",
+      "In_focus",
+      "No_pixelation",
+      "Frontal_pose"
+    ],
+    "n_disjoint": 6,
+    "mean_appearances_per_image": 2.37
+  }
+}

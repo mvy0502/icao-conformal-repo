@@ -1,5 +1,5 @@
 """
-analysis_v3.py — hardened analysis addressing the 5-agent internal review.
+analysis_v3.py: hardened analysis addressing the 5-agent internal review.
 
 Changes vs v2:
   * conformal_quantile uses the exact k-th order statistic (k = ceil((n+1)(1-alpha))),
@@ -22,7 +22,7 @@ Changes vs v2:
 
 Run: python3 analysis_v3.py
 """
-import json, os, warnings
+import json, os, sys, warnings
 import numpy as np
 warnings.filterwarnings("ignore")
 from sklearn.linear_model import LogisticRegression
@@ -31,8 +31,9 @@ from sklearn.isotonic import IsotonicRegression
 from scipy.stats import beta as beta_dist
 import analysis_v2 as A
 
-OUT = "/home/claude/results_v3"; os.makedirs(OUT, exist_ok=True)
-CSV = "/home/claude/tono_full_pred.csv"
+BASE = os.path.dirname(os.path.abspath(__file__))
+CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(BASE, "tono_full_pred.csv")
+OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(BASE, "results_v3"); os.makedirs(OUT, exist_ok=True)
 CRIT, MET = A.CRITERIA, A.METRICS
 ALPHA = 0.10
 FEATSETS = {

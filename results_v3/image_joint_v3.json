@@ -7,7 +7,13 @@
       "violations_wrongly_accepted": 0,
       "total_violation_images": 925,
       "zoom_accept": 0,
-      "zoom_total": 69
+      "zoom_reject": 62,
+      "zoom_retake": 7,
+      "zoom_total": 69,
+      "inscope_reject_correct_target": 766,
+      "inscope_reject_wrong_reason": 86,
+      "inscope_retake": 73,
+      "inscope_accept": 0
     },
     "mond": {
       "ACCEPT": 0,
@@ -16,7 +22,13 @@
       "violations_wrongly_accepted": 0,
       "total_violation_images": 925,
       "zoom_accept": 0,
-      "zoom_total": 69
+      "zoom_reject": 69,
+      "zoom_retake": 0,
+      "zoom_total": 69,
+      "inscope_reject_correct_target": 822,
+      "inscope_reject_wrong_reason": 67,
+      "inscope_retake": 36,
+      "inscope_accept": 0
     }
   },
   "joint_coverage": {

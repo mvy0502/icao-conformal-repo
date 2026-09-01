@@ -1,10 +1,14 @@
 """v3-consistent image-level decisions + Bonferroni joint coverage."""
-import json, numpy as np, warnings
+import json, os, sys, numpy as np, warnings
 warnings.filterwarnings("ignore")
+BASE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE)
 import analysis_v2 as A
 import analysis_v3 as V3
-OUT = "/home/claude/results_v3"
-df = A.load_and_prepare("/home/claude/tono_full_pred.csv")
+PRED = sys.argv[1] if len(sys.argv) > 1 else os.path.join(BASE, "tono_full_pred.csv")
+OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(BASE, "results_v3")
+os.makedirs(OUT, exist_ok=True)
+df = A.load_and_prepare(PRED)
 CRIT, MET = A.CRITERIA, A.METRICS
 ALPHA = 0.10; M = len(CRIT)
 
@@ -42,20 +46,32 @@ n = len(te)
 te_folder = df["source_folder"].to_numpy()[te]
 has_inscope = np.array([A.FOLDER_TO_CRIT.get(f) is not None for f in te_folder])
 is_zoom = np.array([f == "zoom" for f in te_folder])
+target_crit = [A.FOLDER_TO_CRIT.get(f) for f in te_folder]   # truly violated criterion (None for zoom)
 img = {}
 for m in ["lac", "mond"]:
-    dec = []
+    dec, correct_target = [], []
     for i in range(n):
-        anyv = any(held[c][m][i, held[c]["cls"].index(1)] and not held[c][m][i, held[c]["cls"].index(0)] for c in active)
+        conf_v = {c: bool(held[c][m][i, held[c]["cls"].index(1)] and not held[c][m][i, held[c]["cls"].index(0)]) for c in active}
+        anyv = any(conf_v.values())
         allok = all(held[c][m][i, held[c]["cls"].index(0)] and not held[c][m][i, held[c]["cls"].index(1)] for c in active)
         dec.append("REJECT" if anyv else ("ACCEPT" if allok else "RETAKE"))
-    dec = np.array(dec)
+        # a REJECT is "correct-target" when the truly violated criterion itself is confidently flagged
+        correct_target.append(bool(target_crit[i] is not None and conf_v.get(target_crit[i], False)))
+    dec = np.array(dec); correct_target = np.array(correct_target)
+    rej_in = (dec == "REJECT") & has_inscope
     img[m] = {"ACCEPT": int((dec == "ACCEPT").sum()), "REJECT": int((dec == "REJECT").sum()),
               "RETAKE": int((dec == "RETAKE").sum()),
               "violations_wrongly_accepted": int(((dec == "ACCEPT") & has_inscope).sum()),
               "total_violation_images": int(has_inscope.sum()),
               "zoom_accept": int(((dec == "ACCEPT") & is_zoom).sum()),
-              "zoom_total": int(is_zoom.sum())}
+              "zoom_reject": int(((dec == "REJECT") & is_zoom).sum()),
+              "zoom_retake": int(((dec == "RETAKE") & is_zoom).sum()),
+              "zoom_total": int(is_zoom.sum()),
+              # decomposition on in-scope violation images only
+              "inscope_reject_correct_target": int((rej_in & correct_target).sum()),
+              "inscope_reject_wrong_reason": int((rej_in & ~correct_target).sum()),
+              "inscope_retake": int(((dec == "RETAKE") & has_inscope).sum()),
+              "inscope_accept": int(((dec == "ACCEPT") & has_inscope).sum())}
 
 # ---- Bonferroni joint coverage over 5 seeds (non-zoom per-criterion test) ----
 def joint_cov(alpha, seed):

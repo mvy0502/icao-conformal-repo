@@ -1,4 +1,4 @@
-# Response to review — revised experiments and open protocol questions
+# Response to review: revised experiments and open protocol questions
 
 **Author:** Mustafa Vedat Yıldırım (BSc AI, Oxford Brookes)
 **Supervisor:** Dr. Inna Skarga-Bandurova
@@ -26,7 +26,7 @@ use a **subject-disjoint 60/20/20 split** (train / calibration / test), with sav
 and are reported as **mean ± std over 5 random subject-disjoint splits**.
 
 **Violation-class coverage is now the primary metric.** As you noted, the marginal average
-coverage hides the quantity that actually matters — the coverage on true violations, whose
+coverage hides the quantity that actually matters: the coverage on true violations, whose
 miss-cost is high.
 
 **Honest retake metric.** I no longer describe the reduction as "image retakes." What we
@@ -35,43 +35,27 @@ violations), and I report the detection trade-off alongside it.
 
 ---
 
-## 2. Headline revised results (subject-disjoint, 5 splits, target 0.90)
+## 2. Headline results (superseded; see the v3 paper for current numbers)
 
-- **Marginal coverage holds:** mean **0.903 ± 0.015** across criteria and splits — the
-  distribution-free guarantee survives the honest split. (My from-scratch LAC implementation
-  matches MAPIE to within 0.003, so both are cross-checked.)
-- **Marginal conformal silently under-covers the violation class:** mean violation-class
-  coverage **0.819 ± 0.026**, and it falls as low as **0.32** on `No_posterization`. Seven of
-  fourteen criteria are below 0.90 on the violation class. This is exactly the failure mode
-  your review anticipated.
-- **Mondrian (label-conditional) conformal restores it:** violation-class coverage
-  **0.909 ± 0.022**, i.e. the guarantee is re-established on the costly class.
-- **Method comparison (the new core contribution).** On one common subject-disjoint test set:
+The table and the "Mondrian is the balanced operating point" reading that stood here were
+withdrawn in v3. The consolidated seven-method comparison with calibration-only tuning
+(Table 3 of the v3 paper) shows that no method dominates: a calibration-tuned abstention rule
+reaches a lower false-positive rate than Mondrian at a similar retake rate, and Mondrian's
+distinct contribution is the formal class-conditional coverage property, not an accuracy win.
+The v3 numbers that replace this section are:
 
-  | Method | FPR | Recall (violations) | Per-criterion false-flag reduction vs raw |
-  |---|---|---|---|
-  | Raw BioGaze | 0.147 | 0.950 | — |
-  | Logistic only (no conformal) | 0.050 | 0.947 | 69% |
-  | Threshold + abstention | 0.034 | 0.932 | 77% |
-  | LAC conformal (marginal) | 0.033 | **0.808** | 75% |
-  | Mondrian conformal | 0.045 | 0.882 | 72% |
-
-  Two honest observations: (i) most of the false-flag reduction comes from **recalibration**
-  itself, not from conformal — a logistic layer already removes ~69% of false flags while
-  keeping recall; (ii) **marginal LAC buys the lowest FPR by sacrificing violation recall**
-  (0.81) and by under-covering the violation class. **Mondrian is the balanced operating
-  point**: it keeps the violation-class guarantee, recovers recall to 0.88, and still removes
-  ~72% of false flags. So the contribution is *not* "conformal reduces retakes" but "**label-
-  conditional conformal gives a violation-class coverage guarantee under class imbalance,
-  and we characterise the false-flag / detection trade-off of five triage strategies.**"
-
-- **Image-level safety:** of **925** true-violation test images, **0 were wrongly ACCEPTED**;
-  every violation was routed to REJECT (862) or RETAKE (63). The ACCEPT class is tiny (6, all
-  `zoom`), which is a property of TONO, not of the method (see §4).
-- **Joint coverage caveat:** requiring all 14 prediction sets to simultaneously contain the
-  truth gives only **~0.31** empirical joint coverage — the expected multiple-comparison
-  effect. A Bonferroni-style per-criterion target of 0.993 would be needed for joint 0.90.
-  I report this honestly and flag it as future work rather than hiding it.
+- Marginal LAC violation-class coverage below 0.90 on 11 of 14 criteria; on 5 of them (6 with
+  Frontal pose) the whole de-duplicated 95% interval is below 0.90 (as low as 0.40).
+  Mondrian brings these back to 0.88 to 0.91 with disjoint intervals.
+- Seven strategies on the same five subject-disjoint partitions (FPR / recall over all /
+  recall among decided / RETAKE): raw 0.144 / 0.955 / 0.955 / 0%; logistic 0.048 / 0.939 /
+  0.939 / 0%; Chow 0.027 / 0.800 / 0.954 / 9.5%; asymmetric 0.013 / 0.784 / 0.940 / 7.3%;
+  LAC 0.036 / 0.807 / 0.944 / 7.3%; Mondrian 0.040 / 0.878 / 0.959 / 10.3%; randomized APS
+  0.026 / 0.891 / 0.958 / 7.2%.
+- Image level (Mondrian): 0 ACCEPT / 958 REJECT / 36 RETAKE on 994 images; 822 correct-target
+  and 67 wrong-reason rejections among the 925 in-scope violation images.
+- Joint coverage about 0.27 uncorrected; Bonferroni gives about 0.91 but routes 96% (LAC) or
+  100% (Mondrian) of images to RETAKE.
 
 ---
 
@@ -129,11 +113,11 @@ triage), so it does not entangle Paper 1's methodology.
 5. **Research question framing.** Confirm the reframing to **"uncertainty-aware triage under
    class imbalance and asymmetric cost"** rather than "average coverage."
 6. **Scope of Paper 1.** Keep Paper 1 on **TONO only** (method + guarantee + trade-off) and
-   defer all real-data / ACCEPT-class claims to Paper 2 with DFIC — agreed?
+   defer all real-data / ACCEPT-class claims to Paper 2 with DFIC, agreed?
 7. **`zoom` handling.** Report `zoom` strictly as out-of-scope (my current choice), or add a
    short note proposing a head-size check as a BioGaze extension?
 
-I have **not** polished the Introduction / Related Work yet, per your advice — I will do that
+I have **not** polished the Introduction / Related Work yet, per your advice; I will do that
 only once we fix the protocol above.
 
 ---
