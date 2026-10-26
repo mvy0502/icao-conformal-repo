@@ -24,8 +24,8 @@ cats = ["ACCEPT", "REJECT", "RETAKE"]
 x = np.arange(3)
 # in-scope stacks; hatching keeps the segments apart in greyscale
 seg = [
-    ("REJECT, correct criterion", TEAL, None, [0, n_ok, 0]),
-    ("REJECT, wrong criterion", AMBER, "////", [0, n_wr, 0]),
+    ("REJECT, correct target", TEAL, None, [0, n_ok, 0]),
+    ("REJECT, wrong reason", AMBER, "////", [0, n_wr, 0]),
     ("RETAKE (in scope)", BLUE, "....", [0, 0, n_rt]),
     ("ACCEPT (in scope; would be a missed violation)", RED, None, [n_acc, 0, 0]),
     ("Zoom images (out of scope)", GREY, "xxxx", [n_za, n_zr, n_zt]),
