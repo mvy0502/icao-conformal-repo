@@ -1,5 +1,7 @@
 # Class-Conditional Conformal Triage for ICAO Face-Image Compliance under Class Imbalance
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23674340.svg)](https://doi.org/10.5281/zenodo.23674340)
+
 Code, result files and figures for the paper of the same title by **Mustafa Vedat Yildirim** and
 **Inna Skarga-Bandurova** (School of Engineering, Computing and Mathematics, Oxford Brookes University),
 under submission to the *International Journal of Computing*.
@@ -104,4 +106,6 @@ ultralytics and rmn).
 
 ## Citation
 
-See `CITATION.cff`. A DOI will be added once the repository is archived on Zenodo.
+See `CITATION.cff`. Archived on Zenodo: version v1.0.0, used for the paper,
+[10.5281/zenodo.23674341](https://doi.org/10.5281/zenodo.23674341); all versions,
+[10.5281/zenodo.23674340](https://doi.org/10.5281/zenodo.23674340).

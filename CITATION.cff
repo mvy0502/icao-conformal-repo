@@ -9,6 +9,8 @@ authors:
     given-names: Inna
     affiliation: Oxford Brookes University
 version: 1.0.0
+doi: 10.5281/zenodo.23674341
+date-released: 2026-10-26
 license: MIT
 repository-code: "https://github.com/mvy0502/icao-conformal-repo"
 keywords:
