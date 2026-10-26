@@ -362,7 +362,7 @@
     "subject_macro_coverage": 0.912,
     "subject_coverage_std": 0.032,
     "treatment": "EMPIRICAL DIAGNOSTIC, not a formal guarantee.",
-    "note": "Images cluster within subjects, so exchangeability holds only at the subject level; the effective calibration size is the number of calibration SUBJECTS (~55), not images (763). Calibration here is still image-level, so we report empirical coverage only; a formal clustered/subject-level conformal guarantee is left as future work."
+    "note": "Images cluster within subjects, so exchangeability holds only at the subject level; the effective calibration size is the number of calibration SUBJECTS (~55), not images (762). Calibration here is still image-level, so we report empirical coverage only; a formal clustered/subject-level conformal guarantee is left as future work."
   },
   "aps_randomized": {
     "coverage": 0.973,

@@ -264,7 +264,7 @@ if __name__ == "__main__":
         "treatment": "EMPIRICAL DIAGNOSTIC, not a formal guarantee.",
         "note": "Images cluster within subjects, so exchangeability holds only at the subject level; "
                 "the effective calibration size is the number of calibration SUBJECTS (~55), not images "
-                "(763). Calibration here is still image-level, so we report empirical coverage only; a "
+                "(762). Calibration here is still image-level, so we report empirical coverage only; a "
                 "formal clustered/subject-level conformal guarantee is left as future work.",
     }
     print("\n== subject-level ==", json.dumps(subject_level))
