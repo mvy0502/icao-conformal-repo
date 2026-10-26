@@ -1,94 +1,82 @@
-"""Figures for the hardened v3 analysis: feature ablation, per-criterion CIs, risk-coverage."""
+"""Journal-size figures for the v4 analysis: feature ablation (Fig 2), per-criterion CIs (Fig 3), risk-coverage (Fig 4).
+Style and sizes come from fig_style.py; claims live in the captions, not in figure titles."""
 import json, os, sys, numpy as np, warnings
 warnings.filterwarnings("ignore")
 import matplotlib
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 import analysis_v2 as A
 import analysis_v3 as V3
+import fig_style as S
+from fig_style import INK, TEAL, AMBER, RED, GREY, PURPLE
 
-INK="#1f2933"; TEAL="#0f9d8f"; AMBER="#e0a100"; RED="#c92a2a"; GREY="#adb5bd"; PURPLE="#6741d9"
+S.apply()
 BASE=os.path.dirname(os.path.abspath(__file__))
 OUT=sys.argv[2] if len(sys.argv)>2 else os.path.join(BASE,"results_v3")
 PRED=sys.argv[1] if len(sys.argv)>1 else os.path.join(BASE,"tono_full_pred.csv")
 s=json.load(open(f"{OUT}/analysis_v3.json"))
 
-# ---------- FIG 1: feature ablation (guarantee holds, accuracy + efficiency collapse) ----------
+# ---------- Fig 2: feature ablation (guarantee holds, accuracy + efficiency collapse) ----------
 abl=s["feature_ablation"]; order=["full","own+metrics","metrics"]
-labels=["Full\n(14 dec.+7 metrics)","Own dec.\n+ metrics","Metrics\nonly"]
+labels=["Full\n(14 dec. + 7 metrics)","Own decision\n+ metrics","Metrics\nonly"]
 x=np.arange(3)
-fig,(ax1,ax2)=plt.subplots(1,2,figsize=(11,5.0),dpi=150)
+fig,(ax1,ax2)=S.figure(S.DOUBLE,62,ncols=2)
 # left: accuracy (logistic FPR) collapses while coverage holds
-ax1.plot(x,[abl[k]["log_fpr"]["mean"] for k in order],"-o",color=RED,lw=2,ms=7,label="Logistic FPR (accuracy)")
-ax1.plot(x,[abl[k]["lac_cov"]["mean"] for k in order],"-s",color=TEAL,lw=2,ms=7,label="LAC overall coverage")
-ax1.plot(x,[abl[k]["mond_viol"]["mean"] for k in order],"-^",color=PURPLE,lw=2,ms=7,label="Mondrian violation coverage")
-ax1.axhline(0.90,color=GREY,ls="--",lw=1.2)
-ax1.set_xticks(x); ax1.set_xticklabels(labels,fontsize=8.5)
-ax1.set_ylim(0,1.02); ax1.set_ylabel("Rate", fontsize=11, color=INK)
-ax1.set_title("Coverage guarantee is feature-agnostic;\naccuracy is not", fontsize=11.5, fontweight="bold", color=INK, loc="left")
-ax1.legend(loc="center left", frameon=False, fontsize=8.5)
-for xi,k in zip(x,order):
-    ax1.annotate(f"{abl[k]['log_fpr']['mean']:.2f}",(xi,abl[k]["log_fpr"]["mean"]),textcoords="offset points",xytext=(10,-12),ha="left",fontsize=8.5,color=RED,fontweight="bold")
-    ax1.annotate(f"{abl[k]['mond_viol']['mean']:.2f}",(xi,abl[k]["mond_viol"]["mean"]),textcoords="offset points",xytext=(0,9),ha="center",fontsize=8.5,color=PURPLE,fontweight="bold")
+ax1.plot(x,[abl[k]["log_fpr"]["mean"] for k in order],"-o",color=RED,label="Logistic FPR (accuracy)")
+ax1.plot(x,[abl[k]["lac_cov"]["mean"] for k in order],"-s",color=TEAL,label="LAC overall coverage")
+ax1.plot(x,[abl[k]["mond_viol"]["mean"] for k in order],"-^",color=PURPLE,label="Mondrian violation coverage")
+ax1.axhline(0.90,color=GREY,ls="--",lw=0.9)
+ax1.set_xticks(x); ax1.set_xticklabels(labels)
+ax1.set_ylim(0,1.02); ax1.set_ylabel("Rate")
+ax1.legend(loc="center left",bbox_to_anchor=(0,0.55))
+for xi,k,off in zip(x,order,[(6,3),(6,-10),(6,-4)]):   # offsets keep each value clear of the rising FPR line
+    ax1.annotate(f"{abl[k]['log_fpr']['mean']:.2f}",(xi,abl[k]["log_fpr"]["mean"]),textcoords="offset points",xytext=off,ha="left",fontsize=8.5,color=RED)
+    ax1.annotate(f"{abl[k]['mond_viol']['mean']:.2f}",(xi,abl[k]["mond_viol"]["mean"]),textcoords="offset points",xytext=(0,6),ha="center",fontsize=8.5,color=PURPLE)
 ax1.set_xlim(-0.35,2.35)
-for sp in ["top","right"]: ax1.spines[sp].set_visible(False)
-ax1.set_axisbelow(True); ax1.grid(True,axis="y",color="#eef1f4")
-# right: the catch: Mondrian set size / both-class rate inflate
+ax1.set_axisbelow(True); ax1.grid(True,axis="y")
+# right: the catch: Mondrian set size / both-class rate inflate (hatching keeps the pair apart in greyscale)
 w=0.38
-b1=ax2.bar(x-w/2,[abl[k]["mond_setsize"]["mean"] for k in order],w,color=TEAL,label="Mondrian avg set size",zorder=3)
-b2=ax2.bar(x+w/2,[abl[k]["mond_both"]["mean"] for k in order],w,color=AMBER,label="both-class (ambiguous) rate",zorder=3)
+b1=ax2.bar(x-w/2,[abl[k]["mond_setsize"]["mean"] for k in order],w,color=TEAL,label="Mondrian average set size",zorder=3)
+b2=ax2.bar(x+w/2,[abl[k]["mond_both"]["mean"] for k in order],w,color=AMBER,hatch="////",edgecolor="white",lw=0,label="Both-class (ambiguous) rate",zorder=3)
 for bars in (b1,b2):
-    for b in bars: ax2.text(b.get_x()+b.get_width()/2,b.get_height()+0.03,f"{b.get_height():.2f}",ha="center",fontsize=8.5,color=INK,fontweight="bold")
-ax2.axhline(1.0,color=GREY,ls="--",lw=1.0)
-ax2.set_xticks(x); ax2.set_xticklabels(labels,fontsize=8.5)
+    for b in bars: ax2.text(b.get_x()+b.get_width()/2,b.get_height()+0.03,f"{b.get_height():.2f}",ha="center",fontsize=8.5,color=INK)
+ax2.axhline(1.0,color=GREY,ls="--",lw=0.9)
+ax2.set_xticks(x); ax2.set_xticklabels(labels)
 ax2.set_ylim(0,2.0)
-ax2.set_title("But weak features hold coverage only\nby inflating set size (ambiguity)", fontsize=11.5, fontweight="bold", color=INK, loc="left")
-ax2.legend(loc="upper left", frameon=False, fontsize=8.5)
-for sp in ["top","right"]: ax2.spines[sp].set_visible(False)
-ax2.set_axisbelow(True); ax2.grid(True,axis="y",color="#eef1f4",zorder=0)
-plt.tight_layout()
-plt.savefig(f"{OUT}/fig_ablation.png",bbox_inches="tight",facecolor="white")
-plt.savefig(f"{OUT}/fig_ablation.svg",bbox_inches="tight",facecolor="white")
-print("saved fig_ablation")
+ax2.legend(loc="upper left")
+ax2.set_axisbelow(True); ax2.grid(True,axis="y",zorder=0)
+S.save(fig,OUT,"fig_ablation")
 
-# ---------- FIG 2: per-criterion violation coverage with CIs (LAC vs Mondrian) ----------
-pc=s["per_criterion"]
+# ---------- Fig 3: per-criterion violation coverage with CIs (LAC vs Mondrian) ----------
 # primary partition estimates with subject-cluster bootstrap CIs (see primary_ci_v3.py)
 pj=json.load(open(f"{OUT}/primary_ci_v3.json"))
 dd=pj["primary"]; rb=pj["robustness_10seed"]
 crits=[c for c in A.CRITERIA if c in dd]
 crits.sort(key=lambda c: dd[c]["lac"]["cov"])
+small=lambda c: dd[c]["n_viol_test"]<20 or dd[c]["n_subj_with_viol"]<15   # flagged with * as in Table 2
 y=np.arange(len(crits)); h=0.36
-fig,ax=plt.subplots(figsize=(9.0,7.6),dpi=150)
+fig,ax=S.figure(S.SINGLE,118)
 for i,c in enumerate(crits):
     for m,off,col,mk in [("lac",+h/2,GREY,"s"),("mond",-h/2,TEAL,"o")]:
         cov=dd[c][m]["cov"]; ci=dd[c][m]["ci95_clusterboot"]
         r=rb[c][m]
         # robustness range: thin light band with a tick at the 10-partition mean
-        ax.plot([r["min"],r["max"]],[i+off]*2,color=col,alpha=0.28,lw=7,solid_capstyle="butt",zorder=1)
-        ax.plot([r["mean"]]*2,[i+off-0.13,i+off+0.13],color=col,lw=1.6,alpha=0.85,zorder=2)
-        ax.errorbar(cov,i+off,xerr=[[cov-ci[0]],[ci[1]-cov]],fmt=mk,color=col,ms=6,capsize=3,lw=1.4,zorder=3)
-    if dd[c]["n_viol_test"]<20 or dd[c]["n_subj_with_viol"]<15:
-        ax.text(1.06,i,"small n",fontsize=7.5,color=RED,va="center")
-ax.axvline(0.90,color=RED,ls="--",lw=1.4,zorder=2)
-ax.set_yticks(y); ax.set_yticklabels([c.replace("_"," ") for c in crits],fontsize=9)
-ax.set_xlabel("Coverage on the violation class", fontsize=10.5, color=INK)
-ax.set_xlim(0.22,1.13)
-from matplotlib.lines import Line2D
-leg=[Line2D([0],[0],marker="s",color="w",markerfacecolor=GREY,ms=8,label="Marginal LAC, primary partition (95% subject-cluster bootstrap CI)"),
-     Line2D([0],[0],marker="o",color="w",markerfacecolor=TEAL,ms=8,label="Mondrian, primary partition (95% subject-cluster bootstrap CI)"),
-     Line2D([0],[0],color=GREY,alpha=0.35,lw=7,label="Range over ten partitions (tick = mean)"),
-     Line2D([0],[0],color=RED,ls="--",label="0.90 target")]
-ax.legend(handles=leg,loc="lower left",frameon=False,fontsize=8.6)
-ax.set_title("Marginal conformal under-covers the violation class; Mondrian is close to the target on average\n(primary partition with subject-cluster bootstrap CIs; ten-partition ranges as robustness)",
-             fontsize=11.0, fontweight="bold", color=INK, loc="left", pad=12)
-for sp in ["top","right"]: ax.spines[sp].set_visible(False)
-plt.tight_layout()
-plt.savefig(f"{OUT}/fig_percrit_ci.png",bbox_inches="tight",facecolor="white")
-plt.savefig(f"{OUT}/fig_percrit_ci.svg",bbox_inches="tight",facecolor="white")
-print("saved fig_percrit_ci")
+        ax.plot([r["min"],r["max"]],[i+off]*2,color=col,alpha=0.30,lw=4.5,solid_capstyle="butt",zorder=1)
+        ax.plot([r["mean"]]*2,[i+off-0.13,i+off+0.13],color=col,lw=1.1,alpha=0.9,zorder=2)
+        ax.errorbar(cov,i+off,xerr=[[cov-ci[0]],[ci[1]-cov]],fmt=mk,color=col,ms=3.8,capsize=2,lw=0.9,zorder=3)
+ax.axvline(0.90,color=RED,ls="--",lw=1.0,zorder=2)
+ax.set_yticks(y); ax.set_yticklabels([c.replace("_"," ").capitalize()+("*" if small(c) else "") for c in crits])
+ax.set_ylim(-0.6,len(crits)-0.4)
+ax.set_xlabel("Coverage on the violation class")
+ax.set_xlim(0.22,1.02)
+leg=[Line2D([0],[0],marker="s",color="w",markerfacecolor=GREY,ms=6,label="Marginal LAC, primary partition (95% CI)"),
+     Line2D([0],[0],marker="o",color="w",markerfacecolor=TEAL,ms=6,label="Mondrian, primary partition (95% CI)"),
+     Line2D([0],[0],color=GREY,alpha=0.4,lw=4.5,label="Range over ten partitions (tick: mean)"),
+     Line2D([0],[0],color=RED,ls="--",lw=1.0,label="0.90 target")]
+fig.legend(handles=leg,loc="outside lower center",ncol=1)
+S.save(fig,OUT,"fig_percrit_ci")
 
-# ---------- FIG 3: risk-coverage, isotonic threshold vs conformal (accuracy parity) ----------
+# ---------- Fig 4: risk-coverage, isotonic threshold vs conformal (accuracy parity) ----------
 # conformal confident-singleton FPR-recall as alpha varies (seed 0, full features, zoom excluded)
 df=A.load_and_prepare(PRED)
 tr,ca,te,_=A.subject_disjoint_split(df,seed=0)
@@ -106,24 +94,16 @@ for al in alphas:
             fp+=int((om&conf_v).sum()); tp+=int((vm&conf_v).sum()); nok+=int(om.sum()); nv+=int(vm.sum())
         store["fpr"].append(fp/nok); store["rec"].append(tp/nv)
 iso=s["isotonic_riskcoverage"]
-fig,ax=plt.subplots(figsize=(7.8,6.0),dpi=150)
-ax.plot(iso["fpr"],iso["recall"],"-",color=GREY,lw=2,label="Isotonic-calibrated threshold (baseline)")
-ax.plot(lac_pts["fpr"],lac_pts["rec"],"-s",color=AMBER,lw=1.8,ms=6,label="LAC conformal (confident REJECT)")
-ax.plot(mon_pts["fpr"],mon_pts["rec"],"-o",color=TEAL,lw=1.8,ms=6,label="Mondrian conformal (confident REJECT)")
-# annotate the ends of the alpha sweep so the hook shape is readable
-ax.annotate(f"alpha = {alphas[0]:.2f}",(lac_pts["fpr"][0],lac_pts["rec"][0]),textcoords="offset points",xytext=(8,-13),fontsize=8,color=AMBER)
-ax.annotate(f"alpha = {alphas[0]:.2f}",(mon_pts["fpr"][0],mon_pts["rec"][0]),textcoords="offset points",xytext=(10,-4),fontsize=8,color=TEAL)
-ax.text(0.052,0.62,"Conformal sweeps run from alpha = 0.30 (lower left)\nto alpha = 0.03; the hook at small alpha is where\nsets turn ambiguous and confident REJECTs fall.",fontsize=8.2,color="#6b7280",va="top")
-ax.set_xlabel("False-positive rate (true-OK flagged)", fontsize=11, color=INK)
-ax.set_ylabel("Recall on true violations", fontsize=11, color=INK)
+fig,ax=S.figure(S.SINGLE,72)
+ax.plot(iso["fpr"],iso["recall"],"-",color=GREY,lw=1.6,label="Isotonic-calibrated threshold")
+ax.plot(lac_pts["fpr"],lac_pts["rec"],"-s",color=AMBER,lw=1.2,label="LAC (confident REJECT)")
+ax.plot(mon_pts["fpr"],mon_pts["rec"],"-o",color=TEAL,lw=1.2,label="Mondrian (confident REJECT)")
+# mark where each sweep starts; the legend title gives the range, so the hook at small alpha reads without a note
+ax.annotate(f"α = {alphas[0]:.2f}",(lac_pts["fpr"][0],lac_pts["rec"][0]),textcoords="offset points",xytext=(6,-11),fontsize=8.5,color=AMBER)
+ax.annotate(f"α = {alphas[0]:.2f}",(mon_pts["fpr"][0],mon_pts["rec"][0]),textcoords="offset points",xytext=(8,-4),va="top",fontsize=8.5,color=TEAL)
+ax.set_xlabel("False-positive rate"); ax.set_ylabel("Recall on true violations")
 ax.set_xlim(0,0.13); ax.set_ylim(0.4,1.0)
-ax.set_title("Conformal is matched or weakly dominated by a calibrated baseline on accuracy;\nits added value is the distribution-free guarantee, not the curve",
-             fontsize=11.2, fontweight="bold", color=INK, loc="left", pad=12)
-ax.set_axisbelow(True); ax.grid(True,color="#eef1f4")
-for sp in ["top","right"]: ax.spines[sp].set_visible(False)
-ax.legend(loc="lower right", frameon=False, fontsize=9)
-plt.tight_layout()
-plt.savefig(f"{OUT}/fig_riskcoverage.png",bbox_inches="tight",facecolor="white")
-plt.savefig(f"{OUT}/fig_riskcoverage.svg",bbox_inches="tight",facecolor="white")
-print("saved fig_riskcoverage")
+ax.set_axisbelow(True); ax.grid(True)
+ax.legend(loc="lower right",title=f"Conformal sweeps: α = {alphas[0]:.2f} to {alphas[-1]:.2f}",title_fontsize=8.5)
+S.save(fig,OUT,"fig_riskcoverage")
 print("DONE v3 figures")
