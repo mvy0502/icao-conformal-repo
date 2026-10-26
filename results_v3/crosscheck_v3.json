@@ -1,0 +1,308 @@
+{
+  "config": {
+    "alpha": 0.1,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "primary_seed": 0,
+    "features": "14 decisions + 7 metrics",
+    "mapie": "SplitConformalClassifier(conformity_score='lac', prefit=True)"
+  },
+  "lac_overall_coverage": {
+    "Head_without_covering": {
+      "primary": 0.922,
+      "ten_partitions": {
+        "mean": 0.89,
+        "min": 0.834,
+        "max": 0.95
+      }
+    },
+    "Eyes_open": {
+      "primary": 0.924,
+      "ten_partitions": {
+        "mean": 0.897,
+        "min": 0.809,
+        "max": 0.941
+      }
+    },
+    "No_sunglasses": {
+      "primary": 0.928,
+      "ten_partitions": {
+        "mean": 0.901,
+        "min": 0.861,
+        "max": 0.929
+      }
+    },
+    "No_posterization": {
+      "primary": 0.914,
+      "ten_partitions": {
+        "mean": 0.902,
+        "min": 0.869,
+        "max": 0.923
+      }
+    },
+    "Gaze_in_camera": {
+      "primary": 0.928,
+      "ten_partitions": {
+        "mean": 0.889,
+        "min": 0.842,
+        "max": 0.928
+      }
+    },
+    "Neutral_expression": {
+      "primary": 0.916,
+      "ten_partitions": {
+        "mean": 0.884,
+        "min": 0.821,
+        "max": 0.935
+      }
+    },
+    "In_focus": {
+      "primary": 0.904,
+      "ten_partitions": {
+        "mean": 0.904,
+        "min": 0.884,
+        "max": 0.924
+      }
+    },
+    "Correct_exposure": {
+      "primary": 0.911,
+      "ten_partitions": {
+        "mean": 0.896,
+        "min": 0.864,
+        "max": 0.944
+      }
+    },
+    "No_or_light_makeup": {
+      "primary": 0.917,
+      "ten_partitions": {
+        "mean": 0.905,
+        "min": 0.876,
+        "max": 0.933
+      }
+    },
+    "No_pixelation": {
+      "primary": 0.901,
+      "ten_partitions": {
+        "mean": 0.897,
+        "min": 0.881,
+        "max": 0.913
+      }
+    },
+    "Frontal_pose": {
+      "primary": 0.898,
+      "ten_partitions": {
+        "mean": 0.902,
+        "min": 0.836,
+        "max": 0.966
+      }
+    },
+    "Correct_saturation": {
+      "primary": 0.929,
+      "ten_partitions": {
+        "mean": 0.894,
+        "min": 0.816,
+        "max": 0.945
+      }
+    },
+    "Uniform_background": {
+      "primary": 0.92,
+      "ten_partitions": {
+        "mean": 0.891,
+        "min": 0.83,
+        "max": 0.935
+      }
+    },
+    "Uniform_face_lighting": {
+      "primary": 0.923,
+      "ten_partitions": {
+        "mean": 0.897,
+        "min": 0.852,
+        "max": 0.935
+      }
+    }
+  },
+  "mapie_agreement": {
+    "per_criterion": {
+      "Head_without_covering": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "Eyes_open": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "No_sunglasses": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "No_posterization": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "Gaze_in_camera": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "Neutral_expression": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "In_focus": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "Correct_exposure": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "No_or_light_makeup": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "No_pixelation": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "Frontal_pose": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "Correct_saturation": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "Uniform_background": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "Uniform_face_lighting": {
+        "identical_sets": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "coverage_diff": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "max_abs_coverage_diff": 0.0,
+    "min_identical_sets": 1.0
+  }
+}

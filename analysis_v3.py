@@ -119,7 +119,8 @@ def fit_all(df, c, tr, ca, te, alpha, feat_cols, rng=None):
            "bio_flag": (df[c].to_numpy()[te] == 0).astype(int),
            "n_pos_calib": int(yca.sum()), "n_pos_test": int(yte.sum()),
            "mond_viol_qinf": bool(np.isinf(qc[1])),  # vacuous: violation class always included
-           "subj_te": df["subject"].to_numpy()[te]}
+           "subj_te": df["subject"].to_numpy()[te],
+           "clf": clf, "X_ca": Xs[ca], "X_te": Xs[te]}   # fitted model + scaled features, for crosscheck_v3.py
     if rng is not None:
         e = aps_calib_scores_rand(p_ca, yca, rng)
         qa = cq_exact(e, alpha)

@@ -32,6 +32,7 @@ def apply():
         "grid.color": GRID, "grid.linewidth": 0.6,
         "lines.linewidth": 1.4, "lines.markersize": 4.5, "hatch.linewidth": 0.7,
         "savefig.dpi": 600, "svg.fonttype": "none",
+        "svg.hashsalt": "icao-conformal",     # fixed element ids, so re-runs give identical SVGs
     })
 
 
@@ -48,8 +49,8 @@ def save(fig, out, name):
     """Write PNG (600 dpi, for Word) and SVG at exactly the printed size; refuse text below MIN_PT."""
     small = smallest_font(fig)
     assert small >= MIN_PT, f"{name}: text at {small} pt is below the {MIN_PT} pt floor"
-    for ext in ("png", "svg"):
-        fig.savefig(f"{out}/{name}.{ext}", facecolor="white")
+    fig.savefig(f"{out}/{name}.png", facecolor="white")
+    fig.savefig(f"{out}/{name}.svg", facecolor="white", metadata={"Date": None})   # no timestamp in the file
     w, h = fig.get_size_inches() / MM
     print(f"saved {name}: {w:.0f} x {h:.0f} mm, smallest text {small} pt")
     plt.close(fig)
