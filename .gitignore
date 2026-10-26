@@ -1,5 +1,6 @@
 # Data and third-party assets (never commit)
 tono_full_pred*.csv
+!data/tono_full_pred.csv
 TONO/
 *.zip
 *.tar
@@ -12,8 +13,10 @@ __pycache__/
 *.pyc
 node_modules/
 
-# Private project notes (MSc dates, personal details)
+# Private project notes and assistant tooling (never published)
 CLAUDE.md
+CLAUDE.local.md
+.claude/
 docs/
 
 # Unreleased paper drafts stay local

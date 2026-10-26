@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite it as below."
+title: "Class-Conditional Conformal Triage for ICAO Face-Image Compliance under Class Imbalance: code and data"
+authors:
+  - family-names: Yildirim
+    given-names: Mustafa Vedat
+    affiliation: Oxford Brookes University
+  - family-names: Skarga-Bandurova
+    given-names: Inna
+    affiliation: Oxford Brookes University
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/mvy0502/icao-conformal-repo"
+keywords:
+  - conformal prediction
+  - Mondrian conformal prediction
+  - class-conditional coverage
+  - face image compliance
+  - ICAO
+  - ISO/IEC 39794-5

@@ -1,132 +1,107 @@
-# Uncertainty-Aware Triage for Rule-Based ICAO Face-Image Compliance
+# Class-Conditional Conformal Triage for ICAO Face-Image Compliance under Class Imbalance
 
-Label-conditional conformal guarantees and a trade-off study on top of a rule-based
-ICAO/ISO face-image compliance analyzer (**BioGaze**), evaluated on the **TONO** synthetic
-benchmark under a strictly **subject-disjoint** protocol.
+Code, result files and figures for the paper of the same title by **Mustafa Vedat Yildirim** and
+**Inna Skarga-Bandurova** (School of Engineering, Computing and Mathematics, Oxford Brookes University),
+under submission to the *International Journal of Computing*.
 
-**Author:** Mustafa Vedat Yildirim, Oxford Brookes University, BSc Artificial Intelligence
-**Supervisor:** Dr Inna Skarga-Bandurova
-
-**Current version: v4 (frozen TONO protocol).** The authoritative paper is
-`results_v3/Paper1_v4_draft.pdf` (hand-edited master document; changes since the supervisor's
-final review are marked in red). `Paper1_v3_draft.*` is the previous generated draft. Everything in `results_v3/` is reproduced by `./run_all_v3.sh`.
-The `results_v2/` folder is kept for the record; where a v2 number differs from v3, v3 is
-authoritative.
+A small per-criterion classifier and a split conformal layer are added on top of a rule-based ICAO/ISO
+face-image compliance analyser (**BioGaze**), without retraining it, and evaluated on the synthetic
+**TONO** benchmark under a subject-disjoint protocol. All results in the paper and Figs. 2 to 8 are
+produced by `run_all_v3.sh` from one input file, `data/tono_full_pred.csv`.
 
 ---
 
-## What the study shows (v3)
+## Main results
 
-Each of BioGaze's 14 per-criterion decisions is wrapped with a per-criterion supervised
-meta-classifier (class-balanced logistic regression on the 14 decisions plus 7 continuous
-metrics) followed by split conformal prediction. Identities, not images, are partitioned
-60/20/20 (247 of 275 TONO identities recur across violation folders, so a folder split would
-leak). Zoom images (head-size violation, not checked by BioGaze) are out of scope.
+Identities, not images, are split 60/20/20 (247 of 275 TONO identities appear in more than one
+violation folder, so a folder split would leak identities). Zoom images (head size, not checked by
+BioGaze) are out of scope. alpha = 0.10 throughout.
 
-1. **Marginal conformal under-covers the violation class; Mondrian brings it close to target.** Marginal
-   LAC holds its overall 0.90 target, but on the primary partition the whole subject-cluster
-   bootstrap 95% interval lies below 0.90 on 3 of 14 criteria (as low as 0.39 on
-   No posterization), and the ten-partition means are below 0.90 on 11 of 14.
-   Label-conditional (Mondrian) conformal brings each of these close to the nominal target,
-   consistent with label-conditional validity. Primary intervals come from a subject-cluster
-   bootstrap on one fixed partition (`primary_ci_v3.py`); ten repeated partitions serve as a
-   robustness analysis reported as mean, SD and range.
-2. **The guarantee is feature-agnostic; the accuracy is a dataset artifact.** A feature
-   ablation shows coverage unchanged across feature sets while the false-flag reduction
-   collapses from 66% to 26% without cross-criterion features. TONO is single-violation, so
-   accuracy numbers should not be expected to carry over to real multi-attribute data; the
-   coverage property is robust to feature quality within the evaluated distribution, and its
-   validity on real data remains to be tested.
-3. **Seven-strategy trade-off with calibration-only tuning.** Raw BioGaze, logistic only,
-   Chow confidence rejection, an asymmetric two-threshold rule (cost 10 per miss), marginal
-   LAC, Mondrian and randomized APS on the same five partitions, with recall over all cases
-   and among decided cases, RETAKE rate, decision coverage, selective error and false-flag
-   reduction. No method dominates. The calibration-tuned abstention rules reach a lower
-   false-positive rate than Mondrian at a similar retake rate (Table 3, and Table 4 at
-   abstention targets 0.05 / 0.10 / 0.15). Mondrian's contribution is the formal
-   class-conditional coverage property (thresholds fixed as calibration quantiles, not
-   searched against a cost objective), not a win on FPR or recall. Non-randomized APS
-   degenerates on a binary problem; randomized APS is competitive.
-4. **Image-level triage and the multiple-comparison problem.** Aggregating 14 Mondrian sets
-   gives 0 ACCEPT / 958 REJECT / 36 RETAKE on 994 test images; on the 925 in-scope violation
-   images, 822 are rejected for the right criterion, 67 for a different one, 36 go to RETAKE.
-   ACCEPT is structurally empty on TONO. Naive joint coverage is about 0.27; Bonferroni
-   raises it to about 0.91 but routes 96% (LAC) or 100% (Mondrian, whose corrected violation
-   threshold is infinite at this calibration size) of images to RETAKE.
-5. **Exchangeability and cluster-aware sensitivity.** The guarantee is claimed at the image
-   level under exchangeability; subject-disjoint splitting protects against identity leakage.
-   Subject-capped and random equal-n calibration subsamples agree (0.94 both), a subject
-   bootstrap gives 0.89 (5th to 95th: 0.86 to 0.91), and the between-partition SD (0.010)
-   matches the binomial value, so no clustering effect is detected within the power of the
-   checks. A formal clustered guarantee is future work.
+1. **Marginal conformal under-covers the violation class.** Marginal LAC meets its overall 0.90 target,
+   but on the primary partition the whole 95% subject-cluster bootstrap interval lies below 0.90 for
+   3 of 14 criteria (No posterization 0.39, interval 0.25 to 0.53). Over ten partitions its mean is below
+   0.90 on 11 of 14 criteria (aggregate 0.81). By the same single-partition test, Mondrian's interval lies
+   below 0.90 for 2 criteria; over ten partitions every Mondrian mean lies between 0.89 and 0.92
+   (aggregate 0.91). Single-partition intervals hold the calibration set fixed, so the methods are
+   compared on the ten-partition means.
+2. **Coverage is stable across feature sets; accuracy is not.** Removing the cross-criterion features
+   cuts the false-flag reduction from 67% to 26%, because each TONO image has exactly one violation.
+   Coverage stays on target, so the coverage property is robust to feature quality within the
+   evaluated distribution; accuracy on real multi-attribute data remains to be tested.
+3. **Seven triage strategies, thresholds tuned on calibration data only** (raw BioGaze, logistic layer,
+   Chow rejection, an asymmetric two-threshold rule, marginal LAC, Mondrian, randomised APS; five
+   partitions). The logistic layer gives most of the accuracy gain; the tuned abstention rules reach a
+   lower false-positive rate than Mondrian at a similar RETAKE rate. Mondrian's contribution is its
+   class-conditional coverage guarantee, at a cost of 1 to 3 points of false-positive rate. Note: when
+   no threshold pair on the grid meets the abstention tolerance, the asymmetric rule falls back to a
+   fixed band (0.4, 0.6); at the 0.10 target this happens in 27 of 70 criterion fits.
+4. **Image-level triage.** On the primary test set (994 images) Mondrian gives 0 ACCEPT, 942 REJECT and
+   52 RETAKE. Of the 925 in-scope violation images, 817 are rejected for the right criterion, 57 for a
+   different one and 51 go to RETAKE; none of the 69 out-of-scope zoom images is accepted. Joint
+   coverage of all 14 criteria is about 0.27 without correction; a Bonferroni correction raises it to
+   about 0.91 but sends 96% (LAC) or all (Mondrian) images to RETAKE.
+5. **Exchangeability checks.** Subject-capped and random equal-n calibration subsamples agree
+   (0.92, SD 0.02); a subject bootstrap gives 0.89 (5th to 95th percentile 0.86 to 0.91).
 
-Figures (all regenerated from scripts): `results_v3/fig_ablation.png`,
-`fig_percrit_ci.png`, `fig_riskcoverage.png`, `fig_risk_abstention.png`,
-`fig_imgdec_v3.png`, `fig_joint_v3.png`, `fig_subject_sensitivity.png`.
+Our split conformal layer is written from scratch; MAPIE's `SplitConformalClassifier` returns
+identical prediction sets on every test image (`crosscheck_v3.py`).
 
-## Data and scope
+## Repository layout
 
-[TONO synthetic dataset](https://miatbiolab.csr.unibo.it/tono-synthetic-dataset/) (MI@BioLab,
-University of Bologna; CC BY-NC 4.0), single-violation partition. The TONO to ICAO to BioGaze
-mapping (16 in-scope folders to 14 criteria) and the out-of-scope treatment of `zoom` are in
-`results_v2/mapping_and_scope.md` and `results_v2/mapping_table.csv`. The dataset itself is
-**not** redistributed here.
-
-## Pipeline
-
-1. **BioGaze** ([repo](https://github.com/Maphoz/BioGaze)) produces per-image 14 binary ICAO
-   decisions plus continuous metrics: `batch_predict.py` (resume, per-image timeout).
-2. **Subject-disjoint** 60/20/20 split by parsed identity: `analysis_v2.py` (also the shared
-   loader and split helpers).
-3. **Hardened analysis** `analysis_v3.py`: exact finite-sample quantile, feature ablation,
-   ten-seed per-criterion coverage, randomized APS, isotonic risk-coverage baseline.
-4. `primary_ci_v3.py`: primary per-criterion intervals (fixed partition, subject-cluster
-   bootstrap) plus the 10-partition robustness summary; `dedup_ci_v3.py` kept as a secondary
-   sensitivity analysis.
-5. `image_joint_v3.py`: image-level decisions with the correct-target / wrong-reason
-   decomposition, Bonferroni joint coverage.
-6. `method_calib_v3.py`: achieved versus nominal coverage.
-7. `inna_protocol.py`: the supervisor pre-freeze checks (images per subject for every split,
-   seven-method fair table with calibration-only tuning, risk-abstention curves,
-   cluster-aware sensitivity). Optional third argument re-runs it at another abstention target.
-8. Figures: `make_figs_v3.py`, `make_figs_extra_v3.py`, `make_figs_inna.py`.
-9. Paper: `node build_paper_v3.js` (docx-js), then LibreOffice for the PDF.
-
-Split conformal is implemented from scratch and cross-checked against MAPIE for the marginal
-case (agreement within 0.003).
+| Path | Contents |
+|---|---|
+| `data/tono_full_pred.csv` | Per-image BioGaze outputs on TONO: 4,569 images, 14 decisions, 7 continuous metrics |
+| `analysis_v2.py` | Loader, criterion mapping, subject-disjoint split (shared by all scripts) |
+| `analysis_v3.py` | Exact finite-sample quantile, feature ablation, ten-partition coverage, randomised APS, isotonic baseline |
+| `primary_ci_v3.py` | Primary per-criterion intervals (fixed partition, subject-cluster bootstrap, B = 2000) and ten-partition robustness |
+| `inna_protocol.py` | Seven-method table with calibration-only tuning, risk-abstention curves, cluster-aware checks |
+| `image_joint_v3.py` | Image-level decisions and joint (Bonferroni) coverage |
+| `method_calib_v3.py` | Achieved against nominal coverage |
+| `crosscheck_v3.py` | Overall LAC coverage per criterion and agreement with MAPIE |
+| `dedup_ci_v3.py` | Secondary sensitivity analysis (not used in the paper) |
+| `make_figs_v3.py`, `make_figs_extra_v3.py`, `make_figs_inna.py`, `fig_style.py` | Figs. 2 to 8 at printed size (two-column journal layout) |
+| `batch_predict.py` | Runs BioGaze over TONO to produce the CSV (needs the BioGaze stack) |
+| `results_v3/` | All result files (JSON) and figures (PNG, SVG) used in the paper |
+| `results_v2/`, `results/` | Earlier analysis rounds, kept for the record |
 
 ## Reproduce
 
+Python 3.11 (the results are identical with 3.13).
+
 ```bash
-pip install -r requirements_analysis.txt
-# BioGaze predictions (needs the BioGaze stack: torch, dlib, mediapipe, ultralytics, rmn):
-#   python batch_predict.py -i <TONO/release> -o tono_full_pred.csv
-./run_all_v3.sh tono_full_pred.csv
-python3 primary_ci_v3.py tono_full_pred.csv results_v3
-python3 dedup_ci_v3.py tono_full_pred.csv results_v3   # secondary sensitivity analysis
-python3 inna_protocol.py tono_full_pred.csv results_v3 0.05   # optional second abstention target
-python3 inna_protocol.py tono_full_pred.csv results_v3 0.15
-node build_paper_v3.js
+python -m venv .venv
+.venv/bin/pip install -r requirements-lock.txt      # exact versions; requirements_analysis.txt gives minimums
+cp data/tono_full_pred.csv .
+./run_all_v3.sh tono_full_pred.csv                  # 14 steps, about 80 seconds
 ```
 
-Outputs land in `results_v3/`: `analysis_v3.json`, `primary_ci_v3.json`, `dedup_ci_v3.json`, `image_joint_v3.json`,
-`method_and_calib_v3.json`, `inna_protocol.json` (plus `_t0.05` / `_t0.15`), seven figures
-(PNG and SVG) and the paper. Re-running the pipeline reproduces the JSON files byte for byte
-(all seeds fixed).
+On Windows, point the script at the venv interpreter: `PY=.venv/Scripts/python.exe ./run_all_v3.sh tono_full_pred.csv`.
 
-## Explainability
+All seeds are fixed, so a re-run reproduces every JSON in `results_v3/` exactly (`.gitattributes`
+keeps line endings identical across platforms) and redraws the figures.
 
-Region-level explanations (BiSeNet segmentation plus 68 landmarks) of BioGaze's rule-based
-decisions (`results/xai/xai_panel.png`, `make_xai_panel.py`). They explain BioGaze's rule, not
-the meta-classifier's decision, and are presented as a demonstration.
+To regenerate the CSV from the images, download TONO and run BioGaze
+(`python batch_predict.py -i <TONO/release> -o tono_full_pred.csv`; needs torch, dlib, mediapipe,
+ultralytics and rmn).
 
-## Next steps (Paper 2)
+## Known issues
 
-- Real, multi-attribute validation (DFIC) with a genuine, in-distribution ACCEPT class.
-- Cost-calibrated RETAKE region under asymmetric miss and retake cost, and a tighter
-  simultaneous (image-level) guarantee than Bonferroni.
+- `make_xai_panel.py` (`results/xai/`) builds the region-level explanation panel from an earlier draft.
+  Three of its overlays (sunglasses, background, head covering) show the same segmentation, because
+  the first image in those three TONO folders has the same file name. It also uses absolute paths.
+  The panel is not part of the current paper and will be fixed.
+- Some v1 and v2 scripts (`conformal_analysis.py`, `make_charts.py`, `robustness.py` and others) are
+  kept for the record; they are not used by `run_all_v3.sh`.
 
-## License and attribution
+## Data and licences
 
-Research code, non-commercial. BioGaze and TONO retain their own licenses; cite TONO
-(Borghi et al., ECCV 2024 Workshops) and BioGaze (FG 2025) if used.
+- Code: MIT licence (`LICENSE`).
+- `data/tono_full_pred.csv`, the result files and the figures are derived from TONO and are released
+  under CC BY-NC 4.0, the licence of the TONO dataset (`DATA_LICENSE.md`).
+- The TONO images are not redistributed here: [TONO synthetic dataset](https://miatbiolab.csr.unibo.it/tono-synthetic-dataset/)
+  (MI@BioLab, University of Bologna). BioGaze: [github.com/Maphoz/BioGaze](https://github.com/Maphoz/BioGaze).
+  Please cite TONO (Borghi et al., ECCV 2024 Workshops) and BioGaze (Elatfi et al., FG 2025) if you use these files.
+
+## Citation
+
+See `CITATION.cff`. A DOI will be added once the repository is archived on Zenodo.

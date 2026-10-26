@@ -1,0 +1,11 @@
+{
+  "title": "Class-Conditional Conformal Triage for ICAO Face-Image Compliance under Class Imbalance: code and data",
+  "upload_type": "software",
+  "description": "Code, per-image BioGaze outputs on the TONO synthetic dataset, result files and figures for the paper of the same title. A per-criterion classifier and a split conformal layer (marginal, Mondrian and randomised APS) are added to the rule-based BioGaze ICAO/ISO face-image compliance analyser and evaluated with subject-disjoint splits. Code under the MIT licence; data, results and figures under CC BY-NC 4.0 (derived from TONO).",
+  "creators": [
+    {"name": "Yildirim, Mustafa Vedat", "affiliation": "Oxford Brookes University"},
+    {"name": "Skarga-Bandurova, Inna", "affiliation": "Oxford Brookes University"}
+  ],
+  "license": "MIT",
+  "keywords": ["conformal prediction", "Mondrian conformal prediction", "class-conditional coverage", "face image compliance", "ICAO", "ISO/IEC 39794-5"]
+}
