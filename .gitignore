@@ -1,9 +1,23 @@
+# Data and third-party assets (never commit)
+tono_full_pred*.csv
+TONO/
+*.zip
+*.tar
+
+# Environments and caches
+venv/
+.venv/
+biogaze-env/
 __pycache__/
 *.pyc
-*.zip
-venv/
-biogaze-env/
-TONO/
-*.tar
-tono_full_pred*.csv
+node_modules/
+
+# Private project notes (MSc dates, personal details)
+CLAUDE.md
+docs/
+
+# Unreleased paper drafts stay local
+Paper1_*draft*.docx
+Paper1_*draft*.pdf
+
 .DS_Store

@@ -7,8 +7,9 @@ benchmark under a strictly **subject-disjoint** protocol.
 **Author:** Mustafa Vedat Yildirim, Oxford Brookes University, BSc Artificial Intelligence
 **Supervisor:** Dr Inna Skarga-Bandurova
 
-**Current version: v3 (hardened, pre-freeze).** The authoritative paper is
-`results_v3/Paper1_v3_draft.pdf`. Everything in `results_v3/` is reproduced by `./run_all_v3.sh`.
+**Current version: v4 (frozen TONO protocol).** The authoritative paper is
+`results_v3/Paper1_v4_draft.pdf` (hand-edited master document; changes since the supervisor's
+final review are marked in red). `Paper1_v3_draft.*` is the previous generated draft. Everything in `results_v3/` is reproduced by `./run_all_v3.sh`.
 The `results_v2/` folder is kept for the record; where a v2 number differs from v3, v3 is
 authoritative.
 
@@ -22,17 +23,20 @@ metrics) followed by split conformal prediction. Identities, not images, are par
 60/20/20 (247 of 275 TONO identities recur across violation folders, so a folder split would
 leak). Zoom images (head-size violation, not checked by BioGaze) are out of scope.
 
-1. **Marginal conformal under-covers the violation class; Mondrian restores it.** Marginal
-   LAC holds its overall 0.90 target, but its violation-class coverage is below 0.90 on 11 of
-   14 criteria and, on 5 of them (6 with the small-sample Frontal pose), the whole
-   de-duplicated 95% interval lies below 0.90 (as low as 0.40 on No posterization).
-   Label-conditional (Mondrian) conformal brings each of these back to 0.88 to 0.91, with
-   intervals disjoint from the marginal method. Intervals are computed on unique test images
-   over ten seeds (`dedup_ci_v3.py`).
+1. **Marginal conformal under-covers the violation class; Mondrian brings it close to target.** Marginal
+   LAC holds its overall 0.90 target, but on the primary partition the whole subject-cluster
+   bootstrap 95% interval lies below 0.90 on 3 of 14 criteria (as low as 0.39 on
+   No posterization), and the ten-partition means are below 0.90 on 11 of 14.
+   Label-conditional (Mondrian) conformal brings each of these close to the nominal target,
+   consistent with label-conditional validity. Primary intervals come from a subject-cluster
+   bootstrap on one fixed partition (`primary_ci_v3.py`); ten repeated partitions serve as a
+   robustness analysis reported as mean, SD and range.
 2. **The guarantee is feature-agnostic; the accuracy is a dataset artifact.** A feature
    ablation shows coverage unchanged across feature sets while the false-flag reduction
    collapses from 66% to 26% without cross-criterion features. TONO is single-violation, so
-   accuracy numbers should not be expected to transfer.
+   accuracy numbers should not be expected to carry over to real multi-attribute data; the
+   coverage property is robust to feature quality within the evaluated distribution, and its
+   validity on real data remains to be tested.
 3. **Seven-strategy trade-off with calibration-only tuning.** Raw BioGaze, logistic only,
    Chow confidence rejection, an asymmetric two-threshold rule (cost 10 per miss), marginal
    LAC, Mondrian and randomized APS on the same five partitions, with recall over all cases
@@ -47,7 +51,7 @@ leak). Zoom images (head-size violation, not checked by BioGaze) are out of scop
    gives 0 ACCEPT / 958 REJECT / 36 RETAKE on 994 test images; on the 925 in-scope violation
    images, 822 are rejected for the right criterion, 67 for a different one, 36 go to RETAKE.
    ACCEPT is structurally empty on TONO. Naive joint coverage is about 0.27; Bonferroni
-   restores about 0.91 but routes 96% (LAC) or 100% (Mondrian, whose corrected violation
+   raises it to about 0.91 but routes 96% (LAC) or 100% (Mondrian, whose corrected violation
    threshold is infinite at this calibration size) of images to RETAKE.
 5. **Exchangeability and cluster-aware sensitivity.** The guarantee is claimed at the image
    level under exchangeability; subject-disjoint splitting protects against identity leakage.
@@ -76,7 +80,9 @@ mapping (16 in-scope folders to 14 criteria) and the out-of-scope treatment of `
    loader and split helpers).
 3. **Hardened analysis** `analysis_v3.py`: exact finite-sample quantile, feature ablation,
    ten-seed per-criterion coverage, randomized APS, isotonic risk-coverage baseline.
-4. `dedup_ci_v3.py`: de-duplicated Clopper-Pearson intervals (unit = unique test image).
+4. `primary_ci_v3.py`: primary per-criterion intervals (fixed partition, subject-cluster
+   bootstrap) plus the 10-partition robustness summary; `dedup_ci_v3.py` kept as a secondary
+   sensitivity analysis.
 5. `image_joint_v3.py`: image-level decisions with the correct-target / wrong-reason
    decomposition, Bonferroni joint coverage.
 6. `method_calib_v3.py`: achieved versus nominal coverage.
@@ -96,13 +102,14 @@ pip install -r requirements_analysis.txt
 # BioGaze predictions (needs the BioGaze stack: torch, dlib, mediapipe, ultralytics, rmn):
 #   python batch_predict.py -i <TONO/release> -o tono_full_pred.csv
 ./run_all_v3.sh tono_full_pred.csv
-python3 dedup_ci_v3.py tono_full_pred.csv results_v3
+python3 primary_ci_v3.py tono_full_pred.csv results_v3
+python3 dedup_ci_v3.py tono_full_pred.csv results_v3   # secondary sensitivity analysis
 python3 inna_protocol.py tono_full_pred.csv results_v3 0.05   # optional second abstention target
 python3 inna_protocol.py tono_full_pred.csv results_v3 0.15
 node build_paper_v3.js
 ```
 
-Outputs land in `results_v3/`: `analysis_v3.json`, `dedup_ci_v3.json`, `image_joint_v3.json`,
+Outputs land in `results_v3/`: `analysis_v3.json`, `primary_ci_v3.json`, `dedup_ci_v3.json`, `image_joint_v3.json`,
 `method_and_calib_v3.json`, `inna_protocol.json` (plus `_t0.05` / `_t0.15`), seven figures
 (PNG and SVG) and the paper. Re-running the pipeline reproduces the JSON files byte for byte
 (all seeds fixed).

@@ -9,146 +9,146 @@
   "feature_ablation": {
     "full": {
       "lac_cov": {
-        "mean": 0.8989,
-        "std": 0.0159
+        "mean": 0.8997,
+        "std": 0.0138
       },
       "lac_viol": {
-        "mean": 0.8178,
-        "std": 0.0154
+        "mean": 0.8165,
+        "std": 0.0147
       },
       "mond_viol": {
-        "mean": 0.9017,
-        "std": 0.0101
+        "mean": 0.9022,
+        "std": 0.0122
       },
       "log_fpr": {
-        "mean": 0.0484,
-        "std": 0.0042
+        "mean": 0.048,
+        "std": 0.0041
       },
       "log_recall": {
-        "mean": 0.9393,
+        "mean": 0.9374,
         "std": 0.0122
       },
       "log_ffred": {
-        "mean": 66.3194,
-        "std": 3.1727
+        "mean": 66.8504,
+        "std": 2.891
       },
       "mond_setsize": {
-        "mean": 0.9814,
-        "std": 0.0096
+        "mean": 0.9818,
+        "std": 0.0119
       },
       "mond_both": {
-        "mean": 0.0422,
-        "std": 0.017
+        "mean": 0.043,
+        "std": 0.0193
       },
       "lac_empty": {
-        "mean": 0.0646,
-        "std": 0.0125
+        "mean": 0.0641,
+        "std": 0.0104
       }
     },
     "own+metrics": {
       "lac_cov": {
         "mean": 0.8996,
-        "std": 0.0096
+        "std": 0.0082
       },
       "lac_viol": {
-        "mean": 0.7664,
+        "mean": 0.7704,
         "std": 0.035
       },
       "mond_viol": {
-        "mean": 0.9061,
-        "std": 0.0139
+        "mean": 0.91,
+        "std": 0.0189
       },
       "log_fpr": {
         "mean": 0.107,
-        "std": 0.0038
+        "std": 0.0044
       },
       "log_recall": {
-        "mean": 0.9405,
-        "std": 0.0097
+        "mean": 0.9417,
+        "std": 0.0085
       },
       "log_ffred": {
-        "mean": 25.5127,
-        "std": 2.3453
+        "mean": 26.1817,
+        "std": 2.4757
       },
       "mond_setsize": {
-        "mean": 1.0478,
-        "std": 0.0098
+        "mean": 1.0544,
+        "std": 0.0143
       },
       "mond_both": {
-        "mean": 0.0881,
-        "std": 0.0179
+        "mean": 0.0953,
+        "std": 0.0213
       },
       "lac_empty": {
-        "mean": 0.0439,
-        "std": 0.0096
+        "mean": 0.0441,
+        "std": 0.008
       }
     },
     "metrics": {
       "lac_cov": {
-        "mean": 0.9005,
-        "std": 0.0268
+        "mean": 0.8968,
+        "std": 0.0264
       },
       "lac_viol": {
-        "mean": 0.9214,
-        "std": 0.0273
+        "mean": 0.9226,
+        "std": 0.0243
       },
       "mond_viol": {
-        "mean": 0.9347,
-        "std": 0.0144
+        "mean": 0.9362,
+        "std": 0.0121
       },
       "log_fpr": {
-        "mean": 0.4045,
-        "std": 0.0169
+        "mean": 0.4001,
+        "std": 0.0182
       },
       "log_recall": {
-        "mean": 0.7544,
-        "std": 0.034
+        "mean": 0.7526,
+        "std": 0.0371
       },
       "log_ffred": {
-        "mean": -181.6812,
-        "std": 14.0563
+        "mean": -176.3259,
+        "std": 15.919
       },
       "mond_setsize": {
-        "mean": 1.5477,
-        "std": 0.0364
+        "mean": 1.542,
+        "std": 0.0338
       },
       "mond_both": {
-        "mean": 0.5542,
-        "std": 0.0353
+        "mean": 0.5483,
+        "std": 0.0333
       },
       "lac_empty": {
         "mean": 0.0102,
-        "std": 0.0046
+        "std": 0.0042
       }
     }
   },
   "per_criterion": {
     "Head_without_covering": {
-      "lac_viol": 0.795,
+      "lac_viol": 0.782,
       "lac_viol_ci95": [
-        0.759,
-        0.827
+        0.746,
+        0.816
       ],
-      "mond_viol": 0.887,
+      "mond_viol": 0.898,
       "mond_viol_ci95": [
-        0.858,
-        0.912
+        0.87,
+        0.922
       ],
       "median_pos_calib": 57,
-      "mond_avg_set_size": 0.889,
+      "mond_avg_set_size": 0.891,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "Eyes_open": {
-      "lac_viol": 0.936,
+      "lac_viol": 0.931,
       "lac_viol_ci95": [
-        0.919,
-        0.951
+        0.913,
+        0.946
       ],
-      "mond_viol": 0.924,
+      "mond_viol": 0.921,
       "mond_viol_ci95": [
-        0.905,
-        0.94
+        0.902,
+        0.937
       ],
       "median_pos_calib": 95,
       "mond_avg_set_size": 0.901,
@@ -156,114 +156,114 @@
       "degenerate_flag": false
     },
     "No_sunglasses": {
-      "lac_viol": 0.675,
+      "lac_viol": 0.673,
       "lac_viol_ci95": [
-        0.632,
-        0.717
+        0.63,
+        0.715
       ],
-      "mond_viol": 0.897,
+      "mond_viol": 0.909,
       "mond_viol_ci95": [
-        0.866,
-        0.922
+        0.88,
+        0.933
       ],
       "median_pos_calib": 52,
-      "mond_avg_set_size": 0.907,
+      "mond_avg_set_size": 0.906,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "No_posterization": {
-      "lac_viol": 0.372,
+      "lac_viol": 0.366,
       "lac_viol_ci95": [
-        0.333,
-        0.411
+        0.328,
+        0.406
       ],
-      "mond_viol": 0.887,
+      "mond_viol": 0.894,
       "mond_viol_ci95": [
-        0.859,
-        0.911
+        0.867,
+        0.917
       ],
-      "median_pos_calib": 59,
-      "mond_avg_set_size": 0.908,
+      "median_pos_calib": 60,
+      "mond_avg_set_size": 0.909,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "Gaze_in_camera": {
-      "lac_viol": 0.9,
+      "lac_viol": 0.902,
       "lac_viol_ci95": [
-        0.882,
-        0.916
+        0.883,
+        0.918
       ],
-      "mond_viol": 0.892,
+      "mond_viol": 0.896,
       "mond_viol_ci95": [
-        0.874,
-        0.909
+        0.877,
+        0.912
       ],
       "median_pos_calib": 117,
-      "mond_avg_set_size": 0.936,
+      "mond_avg_set_size": 0.935,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "Neutral_expression": {
-      "lac_viol": 0.88,
+      "lac_viol": 0.874,
       "lac_viol_ci95": [
-        0.852,
-        0.905
+        0.845,
+        0.899
       ],
-      "mond_viol": 0.898,
+      "mond_viol": 0.903,
       "mond_viol_ci95": [
-        0.871,
-        0.921
+        0.877,
+        0.925
       ],
       "median_pos_calib": 60,
-      "mond_avg_set_size": 0.939,
+      "mond_avg_set_size": 0.935,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "In_focus": {
-      "lac_viol": 0.726,
+      "lac_viol": 0.743,
       "lac_viol_ci95": [
-        0.689,
-        0.761
+        0.706,
+        0.777
       ],
-      "mond_viol": 0.889,
+      "mond_viol": 0.886,
       "mond_viol_ci95": [
-        0.862,
-        0.913
+        0.858,
+        0.91
       ],
       "median_pos_calib": 60,
-      "mond_avg_set_size": 0.899,
+      "mond_avg_set_size": 0.903,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "Correct_exposure": {
-      "lac_viol": 0.886,
+      "lac_viol": 0.883,
       "lac_viol_ci95": [
-        0.858,
-        0.91
+        0.855,
+        0.907
       ],
-      "mond_viol": 0.901,
+      "mond_viol": 0.888,
       "mond_viol_ci95": [
-        0.874,
-        0.923
+        0.86,
+        0.912
       ],
       "median_pos_calib": 60,
-      "mond_avg_set_size": 1.053,
+      "mond_avg_set_size": 1.047,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "No_or_light_makeup": {
-      "lac_viol": 0.914,
+      "lac_viol": 0.916,
       "lac_viol_ci95": [
-        0.882,
-        0.939
+        0.885,
+        0.941
       ],
-      "mond_viol": 0.889,
+      "mond_viol": 0.911,
       "mond_viol_ci95": [
-        0.854,
-        0.918
+        0.879,
+        0.937
       ],
       "median_pos_calib": 39,
-      "mond_avg_set_size": 0.905,
+      "mond_avg_set_size": 0.906,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
@@ -273,83 +273,83 @@
         0.774,
         0.838
       ],
-      "mond_viol": 0.91,
+      "mond_viol": 0.902,
       "mond_viol_ci95": [
-        0.885,
-        0.932
+        0.876,
+        0.925
       ],
       "median_pos_calib": 60,
-      "mond_avg_set_size": 0.906,
+      "mond_avg_set_size": 0.902,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "Frontal_pose": {
-      "lac_viol": 0.737,
+      "lac_viol": 0.73,
       "lac_viol_ci95": [
-        0.693,
-        0.778
+        0.685,
+        0.771
       ],
-      "mond_viol": 0.915,
+      "mond_viol": 0.907,
       "mond_viol_ci95": [
-        0.885,
-        0.94
+        0.876,
+        0.932
       ],
-      "median_pos_calib": 11,
-      "mond_avg_set_size": 1.284,
+      "median_pos_calib": 12,
+      "mond_avg_set_size": 1.314,
       "n_seeds_vacuous_qinf": 2,
       "degenerate_flag": true
     },
     "Correct_saturation": {
-      "lac_viol": 0.875,
+      "lac_viol": 0.876,
       "lac_viol_ci95": [
-        0.846,
-        0.9
+        0.848,
+        0.901
       ],
-      "mond_viol": 0.897,
+      "mond_viol": 0.912,
       "mond_viol_ci95": [
-        0.871,
-        0.92
+        0.887,
+        0.933
       ],
       "median_pos_calib": 60,
-      "mond_avg_set_size": 0.909,
+      "mond_avg_set_size": 0.908,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "Uniform_background": {
-      "lac_viol": 0.881,
+      "lac_viol": 0.879,
       "lac_viol_ci95": [
-        0.85,
-        0.907
+        0.848,
+        0.906
       ],
-      "mond_viol": 0.917,
+      "mond_viol": 0.912,
       "mond_viol_ci95": [
-        0.89,
-        0.94
+        0.884,
+        0.935
       ],
-      "median_pos_calib": 51,
-      "mond_avg_set_size": 1.072,
+      "median_pos_calib": 49,
+      "mond_avg_set_size": 1.077,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     },
     "Uniform_face_lighting": {
-      "lac_viol": 0.879,
+      "lac_viol": 0.875,
       "lac_viol_ci95": [
-        0.834,
-        0.914
+        0.83,
+        0.911
       ],
-      "mond_viol": 0.921,
+      "mond_viol": 0.925,
       "mond_viol_ci95": [
-        0.883,
-        0.95
+        0.888,
+        0.953
       ],
-      "median_pos_calib": 30,
-      "mond_avg_set_size": 1.171,
+      "median_pos_calib": 31,
+      "mond_avg_set_size": 1.163,
       "n_seeds_vacuous_qinf": 0,
       "degenerate_flag": false
     }
   },
   "robust_headline": {
-    "mond_viol_pooled_mean_stable_criteria": 0.9009,
+    "mond_viol_pooled_mean_stable_criteria": 0.9044,
     "n_stable_criteria": 13,
     "excluded_degenerate": [
       "Frontal_pose"
@@ -358,17 +358,17 @@
   "subject_level": {
     "n_test_subjects": 55,
     "n_calib_subjects": 55,
-    "image_level_coverage_micro": 0.9181,
-    "subject_macro_coverage": 0.9134,
-    "subject_coverage_std": 0.0331,
+    "image_level_coverage_micro": 0.9167,
+    "subject_macro_coverage": 0.912,
+    "subject_coverage_std": 0.032,
     "treatment": "EMPIRICAL DIAGNOSTIC, not a formal guarantee.",
     "note": "Images cluster within subjects, so exchangeability holds only at the subject level; the effective calibration size is the number of calibration SUBJECTS (~55), not images (763). Calibration here is still image-level, so we report empirical coverage only; a formal clustered/subject-level conformal guarantee is left as future work."
   },
   "aps_randomized": {
     "coverage": 0.973,
-    "coverage_viol": 0.96,
-    "recall": 0.889,
-    "avg_set_size": 1.07
+    "coverage_viol": 0.965,
+    "recall": 0.887,
+    "avg_set_size": 1.071
   },
   "isotonic_riskcoverage": {
     "threshold": [
@@ -399,58 +399,58 @@
       0.98
     ],
     "fpr": [
-      0.1164,
+      0.111,
       0.0567,
-      0.0471,
-      0.0288,
-      0.0282,
-      0.0254,
-      0.0192,
-      0.0186,
-      0.0165,
-      0.0121,
-      0.0087,
-      0.0075,
-      0.0074,
-      0.0052,
+      0.0478,
+      0.0316,
+      0.0305,
+      0.029,
+      0.0183,
+      0.0175,
+      0.0151,
+      0.0145,
+      0.0108,
+      0.0067,
+      0.0057,
       0.0051,
-      0.0048,
-      0.0041,
-      0.0033,
-      0.0032,
+      0.005,
+      0.0043,
+      0.0043,
+      0.0036,
+      0.0035,
       0.0026,
-      0.002,
+      0.0017,
       0.0013,
       0.0012,
-      0.0012,
-      0.0008
+      0.0011,
+      0.0007
     ],
     "recall": [
-      0.9611,
+      0.9708,
       0.9405,
-      0.9319,
-      0.9211,
-      0.92,
-      0.9168,
-      0.8962,
-      0.8854,
-      0.8746,
-      0.8551,
-      0.8368,
-      0.8314,
-      0.8292,
-      0.7654,
-      0.7632,
-      0.7535,
-      0.7524,
-      0.7103,
-      0.7092,
-      0.6973,
-      0.6757,
-      0.5654,
-      0.5384,
-      0.4941,
-      0.4541
+      0.9362,
+      0.9297,
+      0.9265,
+      0.9189,
+      0.8768,
+      0.8735,
+      0.8681,
+      0.867,
+      0.853,
+      0.8465,
+      0.8195,
+      0.7978,
+      0.7968,
+      0.7676,
+      0.7676,
+      0.7232,
+      0.7189,
+      0.6876,
+      0.5773,
+      0.5676,
+      0.5211,
+      0.4919,
+      0.373
     ]
   }
 }

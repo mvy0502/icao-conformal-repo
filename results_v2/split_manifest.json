@@ -5,7 +5,7 @@
   "n_subjects_calib": 55,
   "n_subjects_test": 55,
   "n_img_train": 2804,
-  "n_img_calib": 763,
+  "n_img_calib": 762,
   "n_img_test": 994,
   "train_subjects": [
     "S113923411",

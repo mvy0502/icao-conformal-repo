@@ -7,6 +7,7 @@ echo "[2/9] v2 strengthen";                    python3 strengthen.py "$CSV" resu
 echo "[3/9] v3 hardened analysis";             python3 analysis_v3.py "$CSV" results_v3
 echo "[4/9] v3 image-level + joint";           python3 image_joint_v3.py "$CSV" results_v3
 echo "[5/9] v3 method + calibration";          python3 method_calib_v3.py
+echo "[6/10] primary CIs (fixed partition + subject-cluster bootstrap)"; python3 primary_ci_v3.py "$CSV" results_v3
 echo "[6/9] supervisor protocol (fair table, abstention, cluster-aware)"; python3 inna_protocol.py "$CSV" results_v3
 echo "[7/9] figures (ablation, per-criterion CI, risk-coverage)"; python3 make_figs_v3.py "$CSV" results_v3
 echo "[8/9] figures (image-level decomposition, joint coverage)";  python3 make_figs_extra_v3.py results_v3

@@ -53,32 +53,35 @@ print("saved fig_ablation")
 
 # ---------- FIG 2: per-criterion violation coverage with CIs (LAC vs Mondrian) ----------
 pc=s["per_criterion"]
-# de-duplicated estimates (unit = unique test image; see dedup_ci_v3.py)
-dd=json.load(open(f"{OUT}/dedup_ci_v3.json"))["per_criterion"]
-crits=[c for c in A.CRITERIA]
-# sort by LAC violation coverage ascending (unique-image estimate)
-crits.sort(key=lambda c: dd[c]["lac"]["coverage_unique"])
+# primary partition estimates with subject-cluster bootstrap CIs (see primary_ci_v3.py)
+pj=json.load(open(f"{OUT}/primary_ci_v3.json"))
+dd=pj["primary"]; rb=pj["robustness_10seed"]
+crits=[c for c in A.CRITERIA if c in dd]
+crits.sort(key=lambda c: dd[c]["lac"]["cov"])
 y=np.arange(len(crits)); h=0.36
-fig,ax=plt.subplots(figsize=(9.0,7.2),dpi=150)
+fig,ax=plt.subplots(figsize=(9.0,7.6),dpi=150)
 for i,c in enumerate(crits):
-    d=pc[c]
-    lac=dd[c]["lac"]["coverage_unique"]; lci=dd[c]["lac"]["ci95_dedup"]; mon=dd[c]["mond"]["coverage_unique"]; mci=dd[c]["mond"]["ci95_dedup"]
-    deg=d["degenerate_flag"]
-    ax.errorbar(lac,i+h/2,xerr=[[lac-lci[0]],[lci[1]-lac]],fmt="s",color=GREY,ms=6,capsize=3,lw=1.4)
-    ax.errorbar(mon,i-h/2,xerr=[[mon-mci[0]],[mci[1]-mon]],fmt="o",color=TEAL,ms=6,capsize=3,lw=1.4)
-    if deg:
-        ax.text(1.005,i,"small n",fontsize=7.5,color=RED,va="center")
-ax.axvline(0.90,color=RED,ls="--",lw=1.4)
+    for m,off,col,mk in [("lac",+h/2,GREY,"s"),("mond",-h/2,TEAL,"o")]:
+        cov=dd[c][m]["cov"]; ci=dd[c][m]["ci95_clusterboot"]
+        r=rb[c][m]
+        # robustness range: thin light band with a tick at the 10-partition mean
+        ax.plot([r["min"],r["max"]],[i+off]*2,color=col,alpha=0.28,lw=7,solid_capstyle="butt",zorder=1)
+        ax.plot([r["mean"]]*2,[i+off-0.13,i+off+0.13],color=col,lw=1.6,alpha=0.85,zorder=2)
+        ax.errorbar(cov,i+off,xerr=[[cov-ci[0]],[ci[1]-cov]],fmt=mk,color=col,ms=6,capsize=3,lw=1.4,zorder=3)
+    if dd[c]["n_viol_test"]<20 or dd[c]["n_subj_with_viol"]<15:
+        ax.text(1.06,i,"small n",fontsize=7.5,color=RED,va="center")
+ax.axvline(0.90,color=RED,ls="--",lw=1.4,zorder=2)
 ax.set_yticks(y); ax.set_yticklabels([c.replace("_"," ") for c in crits],fontsize=9)
-ax.set_xlabel("Coverage on the violation class (unique test images over 10 subject-disjoint seeds, 95% CI)", fontsize=10.5, color=INK)
-ax.set_xlim(0.25,1.06)
+ax.set_xlabel("Coverage on the violation class", fontsize=10.5, color=INK)
+ax.set_xlim(0.22,1.13)
 from matplotlib.lines import Line2D
-leg=[Line2D([0],[0],marker="s",color="w",markerfacecolor=GREY,ms=8,label="Marginal LAC"),
-     Line2D([0],[0],marker="o",color="w",markerfacecolor=TEAL,ms=8,label="Mondrian"),
+leg=[Line2D([0],[0],marker="s",color="w",markerfacecolor=GREY,ms=8,label="Marginal LAC, primary partition (95% subject-cluster bootstrap CI)"),
+     Line2D([0],[0],marker="o",color="w",markerfacecolor=TEAL,ms=8,label="Mondrian, primary partition (95% subject-cluster bootstrap CI)"),
+     Line2D([0],[0],color=GREY,alpha=0.35,lw=7,label="Range over ten partitions (tick = mean)"),
      Line2D([0],[0],color=RED,ls="--",label="0.90 target")]
-ax.legend(handles=leg,loc="upper left",frameon=False,fontsize=9.5)
-ax.set_title("Marginal conformal under-covers the violation class on several criteria;\nMondrian restores it (de-duplicated Clopper-Pearson 95% CIs)",
-             fontsize=12.0, fontweight="bold", color=INK, loc="left", pad=12)
+ax.legend(handles=leg,loc="lower left",frameon=False,fontsize=8.6)
+ax.set_title("Marginal conformal under-covers the violation class; Mondrian is close to the target on average\n(primary partition with subject-cluster bootstrap CIs; ten-partition ranges as robustness)",
+             fontsize=11.0, fontweight="bold", color=INK, loc="left", pad=12)
 for sp in ["top","right"]: ax.spines[sp].set_visible(False)
 plt.tight_layout()
 plt.savefig(f"{OUT}/fig_percrit_ci.png",bbox_inches="tight",facecolor="white")

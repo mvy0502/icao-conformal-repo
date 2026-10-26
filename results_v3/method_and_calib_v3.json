@@ -1,33 +1,33 @@
 {
   "method_comparison_5seed": {
     "raw": {
-      "fpr": 0.144,
+      "fpr": 0.145,
       "recall": 0.955
     },
     "logistic": {
       "fpr": 0.048,
-      "recall": 0.939
+      "recall": 0.937
     },
     "threshold": {
       "fpr": 0.036,
-      "recall": 0.92
+      "recall": 0.919
     },
     "lac": {
-      "fpr": 0.036,
-      "recall": 0.807
+      "fpr": 0.035,
+      "recall": 0.808
     },
     "mond": {
-      "fpr": 0.04,
+      "fpr": 0.039,
       "recall": 0.878
     },
     "aps": {
       "fpr": 0.026,
-      "recall": 0.891
+      "recall": 0.89
     }
   },
   "achieved_vs_nominal": {
     "0.95": 0.951,
-    "0.9": 0.899,
+    "0.9": 0.9,
     "0.8": 0.803
   }
 }

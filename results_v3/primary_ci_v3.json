@@ -1,0 +1,601 @@
+{
+  "config": {
+    "alpha": 0.1,
+    "primary_seed": 0,
+    "robust_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "bootstrap": {
+      "B": 2000,
+      "unit": "test subject",
+      "rng_seed": 42,
+      "note": "subjects resampled with replacement; images stay with their subject"
+    }
+  },
+  "primary": {
+    "Head_without_covering": {
+      "n_viol_test": 66,
+      "n_subj_with_viol": 51,
+      "n_pos_calib": 44,
+      "lac": {
+        "cov": 0.864,
+        "ci95_clusterboot": [
+          0.768,
+          0.953
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.818,
+        "ci95_clusterboot": [
+          0.721,
+          0.912
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "Eyes_open": {
+      "n_viol_test": 105,
+      "n_subj_with_viol": 49,
+      "n_pos_calib": 76,
+      "lac": {
+        "cov": 0.952,
+        "ci95_clusterboot": [
+          0.908,
+          0.99
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.924,
+        "ci95_clusterboot": [
+          0.868,
+          0.972
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "No_sunglasses": {
+      "n_viol_test": 54,
+      "n_subj_with_viol": 41,
+      "n_pos_calib": 39,
+      "lac": {
+        "cov": 0.741,
+        "ci95_clusterboot": [
+          0.614,
+          0.86
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.889,
+        "ci95_clusterboot": [
+          0.788,
+          0.978
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": true
+    },
+    "No_posterization": {
+      "n_viol_test": 69,
+      "n_subj_with_viol": 52,
+      "n_pos_calib": 47,
+      "lac": {
+        "cov": 0.391,
+        "ci95_clusterboot": [
+          0.25,
+          0.526
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.768,
+        "ci95_clusterboot": [
+          0.656,
+          0.866
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": true,
+      "lac_upper_below_target": true
+    },
+    "Gaze_in_camera": {
+      "n_viol_test": 137,
+      "n_subj_with_viol": 52,
+      "n_pos_calib": 93,
+      "lac": {
+        "cov": 0.927,
+        "ci95_clusterboot": [
+          0.876,
+          0.973
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.92,
+        "ci95_clusterboot": [
+          0.86,
+          0.967
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "Neutral_expression": {
+      "n_viol_test": 69,
+      "n_subj_with_viol": 52,
+      "n_pos_calib": 46,
+      "lac": {
+        "cov": 0.87,
+        "ci95_clusterboot": [
+          0.785,
+          0.941
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.855,
+        "ci95_clusterboot": [
+          0.771,
+          0.929
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "In_focus": {
+      "n_viol_test": 69,
+      "n_subj_with_viol": 52,
+      "n_pos_calib": 47,
+      "lac": {
+        "cov": 0.768,
+        "ci95_clusterboot": [
+          0.645,
+          0.884
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.928,
+        "ci95_clusterboot": [
+          0.87,
+          0.984
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": true
+    },
+    "Correct_exposure": {
+      "n_viol_test": 69,
+      "n_subj_with_viol": 52,
+      "n_pos_calib": 47,
+      "lac": {
+        "cov": 0.812,
+        "ci95_clusterboot": [
+          0.716,
+          0.906
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.841,
+        "ci95_clusterboot": [
+          0.75,
+          0.925
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "No_or_light_makeup": {
+      "n_viol_test": 50,
+      "n_subj_with_viol": 38,
+      "n_pos_calib": 26,
+      "lac": {
+        "cov": 0.78,
+        "ci95_clusterboot": [
+          0.64,
+          0.9
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.98,
+        "ci95_clusterboot": [
+          0.93,
+          1.0
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": true,
+      "lac_upper_below_target": false
+    },
+    "No_pixelation": {
+      "n_viol_test": 69,
+      "n_subj_with_viol": 52,
+      "n_pos_calib": 47,
+      "lac": {
+        "cov": 0.855,
+        "ci95_clusterboot": [
+          0.766,
+          0.939
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.928,
+        "ci95_clusterboot": [
+          0.847,
+          0.986
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "Frontal_pose": {
+      "n_viol_test": 13,
+      "n_subj_with_viol": 9,
+      "n_pos_calib": 86,
+      "lac": {
+        "cov": 0.923,
+        "ci95_clusterboot": [
+          0.769,
+          1.0
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 1.0,
+        "ci95_clusterboot": [
+          1.0,
+          1.0
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "Correct_saturation": {
+      "n_viol_test": 69,
+      "n_subj_with_viol": 52,
+      "n_pos_calib": 47,
+      "lac": {
+        "cov": 0.957,
+        "ci95_clusterboot": [
+          0.9,
+          1.0
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.971,
+        "ci95_clusterboot": [
+          0.925,
+          1.0
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "Uniform_background": {
+      "n_viol_test": 59,
+      "n_subj_with_viol": 45,
+      "n_pos_calib": 40,
+      "lac": {
+        "cov": 0.847,
+        "ci95_clusterboot": [
+          0.727,
+          0.944
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.763,
+        "ci95_clusterboot": [
+          0.629,
+          0.875
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    },
+    "Uniform_face_lighting": {
+      "n_viol_test": 27,
+      "n_subj_with_viol": 25,
+      "n_pos_calib": 30,
+      "lac": {
+        "cov": 0.852,
+        "ci95_clusterboot": [
+          0.692,
+          0.964
+        ],
+        "boot_effective": 2000
+      },
+      "mond": {
+        "cov": 0.852,
+        "ci95_clusterboot": [
+          0.703,
+          0.964
+        ],
+        "boot_effective": 2000
+      },
+      "ci_disjoint": false,
+      "lac_upper_below_target": false
+    }
+  },
+  "summary": {
+    "lac_upper_below_target": [
+      "No_sunglasses",
+      "No_posterization",
+      "In_focus"
+    ],
+    "n_below": 3,
+    "ci_disjoint_lac_vs_mond": [
+      "No_posterization",
+      "No_or_light_makeup"
+    ],
+    "n_disjoint": 2
+  },
+  "robustness_10seed": {
+    "Head_without_covering": {
+      "lac": {
+        "mean": 0.773,
+        "sd": 0.127,
+        "min": 0.564,
+        "max": 0.922,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.9,
+        "sd": 0.061,
+        "min": 0.818,
+        "max": 0.979,
+        "n_seeds": 10
+      }
+    },
+    "Eyes_open": {
+      "lac": {
+        "mean": 0.932,
+        "sd": 0.036,
+        "min": 0.871,
+        "max": 0.981,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.921,
+        "sd": 0.036,
+        "min": 0.839,
+        "max": 0.969,
+        "n_seeds": 10
+      }
+    },
+    "No_sunglasses": {
+      "lac": {
+        "mean": 0.676,
+        "sd": 0.113,
+        "min": 0.481,
+        "max": 0.833,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.91,
+        "sd": 0.033,
+        "min": 0.867,
+        "max": 0.955,
+        "n_seeds": 10
+      }
+    },
+    "No_posterization": {
+      "lac": {
+        "mean": 0.366,
+        "sd": 0.069,
+        "min": 0.226,
+        "max": 0.453,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.894,
+        "sd": 0.056,
+        "min": 0.768,
+        "max": 0.984,
+        "n_seeds": 10
+      }
+    },
+    "Gaze_in_camera": {
+      "lac": {
+        "mean": 0.901,
+        "sd": 0.019,
+        "min": 0.873,
+        "max": 0.929,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.896,
+        "sd": 0.033,
+        "min": 0.825,
+        "max": 0.922,
+        "n_seeds": 10
+      }
+    },
+    "Neutral_expression": {
+      "lac": {
+        "mean": 0.872,
+        "sd": 0.042,
+        "min": 0.804,
+        "max": 0.952,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.902,
+        "sd": 0.035,
+        "min": 0.855,
+        "max": 0.953,
+        "n_seeds": 10
+      }
+    },
+    "In_focus": {
+      "lac": {
+        "mean": 0.741,
+        "sd": 0.074,
+        "min": 0.656,
+        "max": 0.886,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.887,
+        "sd": 0.052,
+        "min": 0.774,
+        "max": 0.942,
+        "n_seeds": 10
+      }
+    },
+    "Correct_exposure": {
+      "lac": {
+        "mean": 0.882,
+        "sd": 0.04,
+        "min": 0.812,
+        "max": 0.938,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.886,
+        "sd": 0.049,
+        "min": 0.774,
+        "max": 0.938,
+        "n_seeds": 10
+      }
+    },
+    "No_or_light_makeup": {
+      "lac": {
+        "mean": 0.922,
+        "sd": 0.06,
+        "min": 0.78,
+        "max": 1.0,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.912,
+        "sd": 0.079,
+        "min": 0.725,
+        "max": 1.0,
+        "n_seeds": 10
+      }
+    },
+    "No_pixelation": {
+      "lac": {
+        "mean": 0.806,
+        "sd": 0.032,
+        "min": 0.731,
+        "max": 0.855,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.901,
+        "sd": 0.041,
+        "min": 0.83,
+        "max": 0.964,
+        "n_seeds": 10
+      }
+    },
+    "Frontal_pose": {
+      "lac": {
+        "mean": 0.843,
+        "sd": 0.159,
+        "min": 0.575,
+        "max": 1.0,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.92,
+        "sd": 0.149,
+        "min": 0.6,
+        "max": 1.0,
+        "n_seeds": 10
+      }
+    },
+    "Correct_saturation": {
+      "lac": {
+        "mean": 0.875,
+        "sd": 0.081,
+        "min": 0.703,
+        "max": 0.984,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.91,
+        "sd": 0.029,
+        "min": 0.867,
+        "max": 0.971,
+        "n_seeds": 10
+      }
+    },
+    "Uniform_background": {
+      "lac": {
+        "mean": 0.876,
+        "sd": 0.046,
+        "min": 0.814,
+        "max": 0.947,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.912,
+        "sd": 0.062,
+        "min": 0.763,
+        "max": 1.0,
+        "n_seeds": 10
+      }
+    },
+    "Uniform_face_lighting": {
+      "lac": {
+        "mean": 0.872,
+        "sd": 0.059,
+        "min": 0.786,
+        "max": 1.0,
+        "n_seeds": 10
+      },
+      "mond": {
+        "mean": 0.924,
+        "sd": 0.052,
+        "min": 0.833,
+        "max": 1.0,
+        "n_seeds": 10
+      }
+    }
+  },
+  "robustness_aggregate": {
+    "lac": {
+      "mean": 0.8099,
+      "sd": 0.0169,
+      "min": 0.7777,
+      "max": 0.8369
+    },
+    "mond": {
+      "mean": 0.9053,
+      "sd": 0.0142,
+      "min": 0.8803,
+      "max": 0.9233
+    }
+  }
+}

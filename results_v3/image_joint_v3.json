@@ -2,60 +2,60 @@
   "image_level_seed0": {
     "lac": {
       "ACCEPT": 0,
-      "REJECT": 914,
-      "RETAKE": 80,
+      "REJECT": 907,
+      "RETAKE": 87,
       "violations_wrongly_accepted": 0,
       "total_violation_images": 925,
       "zoom_accept": 0,
-      "zoom_reject": 62,
-      "zoom_retake": 7,
+      "zoom_reject": 61,
+      "zoom_retake": 8,
       "zoom_total": 69,
-      "inscope_reject_correct_target": 766,
-      "inscope_reject_wrong_reason": 86,
-      "inscope_retake": 73,
+      "inscope_reject_correct_target": 763,
+      "inscope_reject_wrong_reason": 83,
+      "inscope_retake": 79,
       "inscope_accept": 0
     },
     "mond": {
       "ACCEPT": 0,
-      "REJECT": 958,
-      "RETAKE": 36,
+      "REJECT": 942,
+      "RETAKE": 52,
       "violations_wrongly_accepted": 0,
       "total_violation_images": 925,
       "zoom_accept": 0,
-      "zoom_reject": 69,
-      "zoom_retake": 0,
+      "zoom_reject": 68,
+      "zoom_retake": 1,
       "zoom_total": 69,
-      "inscope_reject_correct_target": 822,
-      "inscope_reject_wrong_reason": 67,
-      "inscope_retake": 36,
+      "inscope_reject_correct_target": 817,
+      "inscope_reject_wrong_reason": 57,
+      "inscope_retake": 51,
       "inscope_accept": 0
     }
   },
   "joint_coverage": {
     "uncorrected": {
       "lac": {
-        "mean": 0.2746,
-        "std": 0.0444
+        "mean": 0.2731,
+        "std": 0.0377
       },
       "mond": {
-        "mean": 0.2702,
-        "std": 0.0317
+        "mean": 0.2715,
+        "std": 0.0255
       }
     },
     "bonferroni": {
       "lac": {
-        "mean": 0.9105,
-        "std": 0.027
+        "mean": 0.9129,
+        "std": 0.0253
       },
       "mond": {
-        "mean": 0.9106,
-        "std": 0.0343
+        "mean": 0.9105,
+        "std": 0.0287
       }
     },
     "bonf_retake": {
       "lac": {
-        "mean": 0.9612,
-        "std": 0.0141
+        "mean": 0.9624,
+        "std": 0.0186
       },
       "mond": {
         "mean": 1.0,

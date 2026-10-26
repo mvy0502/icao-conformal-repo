@@ -1,0 +1,212 @@
+{
+  "config": {
+    "alpha": 0.1,
+    "m_criteria": 14,
+    "alpha_bonferroni": 0.00714,
+    "seeds_methods": 5,
+    "seeds_curve": 3,
+    "split": "subject-disjoint 60/20/20"
+  },
+  "method_summary_incl_aps": {
+    "lac": {
+      "coverage": {
+        "mean": 0.9002,
+        "std": 0.0145
+      },
+      "coverage_viol": {
+        "mean": 0.8113,
+        "std": 0.021
+      },
+      "fpr": {
+        "mean": 0.0365,
+        "std": 0.0033
+      },
+      "recall": {
+        "mean": 0.8036,
+        "std": 0.0186
+      },
+      "ffred": {
+        "mean": 75.44,
+        "std": 1.9643
+      }
+    },
+    "mond": {
+      "coverage": {
+        "mean": 0.901,
+        "std": 0.0152
+      },
+      "coverage_viol": {
+        "mean": 0.9126,
+        "std": 0.0208
+      },
+      "fpr": {
+        "mean": 0.0408,
+        "std": 0.0027
+      },
+      "recall": {
+        "mean": 0.8846,
+        "std": 0.0267
+      },
+      "ffred": {
+        "mean": 72.54,
+        "std": 1.4122
+      }
+    },
+    "aps": {
+      "coverage": {
+        "mean": 0.9998,
+        "std": 0.0001
+      },
+      "coverage_viol": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "fpr": {
+        "mean": 0.0002,
+        "std": 0.0001
+      },
+      "recall": {
+        "mean": 0.0155,
+        "std": 0.0041
+      },
+      "ffred": {
+        "mean": 99.86,
+        "std": 0.08
+      }
+    }
+  },
+  "joint_coverage": {
+    "uncorrected": {
+      "lac": {
+        "mean": 0.2675,
+        "std": 0.0336
+      },
+      "mond": {
+        "mean": 0.2667,
+        "std": 0.0221
+      }
+    },
+    "bonferroni": {
+      "lac": {
+        "mean": 0.9215,
+        "std": 0.0281
+      },
+      "mond": {
+        "mean": 0.9037,
+        "std": 0.0288
+      }
+    },
+    "set_size_bonf": {
+      "lac": {
+        "mean": 1.257,
+        "std": 0.0344
+      },
+      "mond": {
+        "mean": 1.2113,
+        "std": 0.0168
+      }
+    },
+    "retake_pct_bonf": {
+      "lac": {
+        "mean": 0.9592,
+        "std": 0.0285
+      },
+      "mond": {
+        "mean": 0.9432,
+        "std": 0.0348
+      }
+    }
+  },
+  "image_level_seed0": {
+    "lac": {
+      "ACCEPT": 1,
+      "REJECT": 873,
+      "RETAKE": 120,
+      "violations_wrongly_accepted": 0,
+      "total_violation_images": 925
+    },
+    "mond": {
+      "ACCEPT": 0,
+      "REJECT": 940,
+      "RETAKE": 54,
+      "violations_wrongly_accepted": 0,
+      "total_violation_images": 925
+    }
+  },
+  "alpha_curve": {
+    "lac": {
+      "nominal": [
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        0.98
+      ],
+      "coverage": [
+        0.8172,
+        0.864,
+        0.9102,
+        0.9554,
+        0.9842
+      ],
+      "coverage_viol": [
+        0.6536,
+        0.7322,
+        0.8152,
+        0.9095,
+        0.9735
+      ],
+      "fpr": [
+        0.023,
+        0.0307,
+        0.0339,
+        0.0217,
+        0.0097
+      ],
+      "recall": [
+        0.666,
+        0.7381,
+        0.8102,
+        0.8548,
+        0.816
+      ]
+    },
+    "mond": {
+      "nominal": [
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        0.98
+      ],
+      "coverage": [
+        0.8197,
+        0.8671,
+        0.9116,
+        0.9568,
+        0.9835
+      ],
+      "coverage_viol": [
+        0.8335,
+        0.8821,
+        0.9272,
+        0.9679,
+        0.9746
+      ],
+      "fpr": [
+        0.0439,
+        0.043,
+        0.0406,
+        0.0273,
+        0.0117
+      ],
+      "recall": [
+        0.8199,
+        0.8672,
+        0.902,
+        0.8971,
+        0.8155
+      ]
+    }
+  }
+}
