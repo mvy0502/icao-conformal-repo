@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
-# Reproduce the full hardened (v3) analysis end to end from tono_full_pred.csv.
+# Reproduce the full v4 analysis end to end from tono_full_pred.csv.
+# Usage: ./run_all_v3.sh [tono_full_pred.csv]
+# On Windows, point PY at the venv interpreter: PY=.venv/Scripts/python.exe ./run_all_v3.sh
 set -e
 CSV=${1:-tono_full_pred.csv}
-echo "[1/9] v2 base analysis";                 python3 analysis_v2.py --csv "$CSV" --out results_v2 --alpha 0.1 --seed 0
-echo "[2/9] v2 strengthen";                    python3 strengthen.py "$CSV" results_v2
-echo "[3/9] v3 hardened analysis";             python3 analysis_v3.py "$CSV" results_v3
-echo "[4/9] v3 image-level + joint";           python3 image_joint_v3.py "$CSV" results_v3
-echo "[5/9] v3 method + calibration";          python3 method_calib_v3.py
-echo "[6/10] primary CIs (fixed partition + subject-cluster bootstrap)"; python3 primary_ci_v3.py "$CSV" results_v3
-echo "[6/9] supervisor protocol (fair table, abstention, cluster-aware)"; python3 inna_protocol.py "$CSV" results_v3
-echo "[7/9] figures (ablation, per-criterion CI, risk-coverage)"; python3 make_figs_v3.py "$CSV" results_v3
-echo "[8/9] figures (image-level decomposition, joint coverage)";  python3 make_figs_extra_v3.py results_v3
-echo "[9/9] figures (risk-abstention, subject sensitivity)";       python3 make_figs_inna.py results_v3
-echo "DONE -> results_v3/   (paper: node build_paper_v3.js)"
+PY=${PY:-python3}
+echo "[1/13] v2 base analysis";                 $PY analysis_v2.py --csv "$CSV" --out results_v2 --alpha 0.1 --seed 0
+echo "[2/13] v2 strengthen";                    $PY strengthen.py "$CSV" results_v2
+echo "[3/13] v3 hardened analysis";             $PY analysis_v3.py "$CSV" results_v3
+echo "[4/13] v3 image-level + joint";           $PY image_joint_v3.py "$CSV" results_v3
+echo "[5/13] v3 method + calibration";          $PY method_calib_v3.py "$CSV" results_v3
+echo "[6/13] primary CIs (fixed partition + subject-cluster bootstrap)"; $PY primary_ci_v3.py "$CSV" results_v3
+echo "[7/13] supervisor protocol (fair table, abstention, cluster-aware)"; $PY inna_protocol.py "$CSV" results_v3
+echo "[8/13] abstention target 0.05 (Table 4)"; $PY inna_protocol.py "$CSV" results_v3 0.05
+echo "[9/13] abstention target 0.15 (Table 4)"; $PY inna_protocol.py "$CSV" results_v3 0.15
+echo "[10/13] de-duplicated CIs (secondary sensitivity, not in the paper)"; $PY dedup_ci_v3.py "$CSV" results_v3
+echo "[11/13] figures (ablation, per-criterion CI, risk-coverage)"; $PY make_figs_v3.py "$CSV" results_v3
+echo "[12/13] figures (image-level decomposition, joint coverage)";  $PY make_figs_extra_v3.py results_v3
+echo "[13/13] figures (risk-abstention, subject sensitivity)";       $PY make_figs_inna.py results_v3
+echo "DONE -> results_v3/"

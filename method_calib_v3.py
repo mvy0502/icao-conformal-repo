@@ -1,8 +1,11 @@
 """v3 canonical 6-method comparison + achieved-vs-nominal coverage -> results_v3/method_and_calib_v3.json"""
-import numpy as np, warnings, json; warnings.filterwarnings("ignore")
+import os, sys, numpy as np, warnings, json; warnings.filterwarnings("ignore")
 import analysis_v2 as A, analysis_v3 as V3
+BASE = os.path.dirname(os.path.abspath(__file__))
+CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(BASE, "tono_full_pred.csv")
+OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(BASE, "results_v3"); os.makedirs(OUT, exist_ok=True)
 if __name__ == "__main__":
-    df=A.load_and_prepare("tono_full_pred.csv"); CRIT,MET=A.CRITERIA,A.METRICS
+    df=A.load_and_prepare(CSV); CRIT,MET=A.CRITERIA,A.METRICS
     rows={m:{"fp":[],"rec":[]} for m in ["raw","logistic","threshold","lac","mond","aps"]}
     for seed in range(5):
         tr,ca,te,_=A.subject_disjoint_split(df,seed=seed); rng=np.random.RandomState(2000+seed)
@@ -29,5 +32,5 @@ if __name__ == "__main__":
             covs.append(np.mean(cc))
         ach[str(tgt)]=round(float(np.mean(covs)),3)
     json.dump({"method_comparison_5seed":methods,"achieved_vs_nominal":ach},
-              open("results_v3/method_and_calib_v3.json","w"),indent=2)
-    print("saved results_v3/method_and_calib_v3.json")
+              open(os.path.join(OUT,"method_and_calib_v3.json"),"w"),indent=2)
+    print("saved", os.path.join(OUT,"method_and_calib_v3.json"))
